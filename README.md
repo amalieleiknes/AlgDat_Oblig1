@@ -3,8 +3,8 @@
 Denne oppgaven er en innlevering i Algoritmer og Datastrukturer. 
 Oppgaven er levert av følgende studenter:
 * Amalie Christine Leiknes, S340559, s340559@oslomet.no
-* Caroline Sofie Jetteberg, S, s@oslomet.no
-* Hannah Marie Maurstad Eriksen, S, , s@oslomet.no
+* Caroline Sofie Jetteberg, S, s313564@oslomet.no
+* Hannah Marie Maurstad Eriksen, S, , s325340@oslomet.no
 
 # Arbeidsfordeling
 
