@@ -23,24 +23,12 @@ public class Oblig1 {
         return a;                               // permutasjonen returneres
     }
 
-
-    //Oppgave 1
-
-
-
-
-
+    // Oppgave 1
 
 
     // Oppgave 2
 
-
-
-
-
-
-
-    //Oppgave 3 - Denne er OK
+    //Oppgave 3 - Denne er OK, men må fikse avvik
     public static int antallUlikeUsortert(int[] a){
         int antall = 0;
         boolean unik = false;
@@ -63,77 +51,52 @@ public class Oblig1 {
     // Oppgave 4
 
 
-
-
-
-
-
     // Oppgave 5
 
 
     // Oppgave 6
 
 
-
     // Oppgave 7
 
 
+    // Oppgave 8 - Denne er OK, men må fikse avvik
+    public static int[] indekssortering(int[] array) {
+        int[] indeksTabell = new int[array.length];//ok
+        int[] sortedArray = Arrays.copyOf(array, array.length);
+        Arrays.sort(sortedArray);       //hjelpetabell som er sortert i stigende rekkefølge
 
-    // Oppgave 8 - den minste verdien sin index skal først i nytt array, og så i stigende rekkefølge
-    public static int[] indekssortering(int[] a) {
-        int[] indeksTabell = new int[a.length];//ok
-
-        int minsteverdiIndex = a.length-1;
-
-        if (a.length < 1) {
+        if (array.length < 1) {
             return null;
-        } else {
-
-            for(int i = 0; i<a.length; i++) {
-
-                for (int m = 0; m < a.length; m++) {//ok
-
-                    if (a[m] < a[minsteverdiIndex]) {
-                        minsteverdiIndex = m;
+        } else {                        // hvis arrayet er tomt returneres null
+            for(int i = 0; i< array.length; i++) {
+                for(int j = 0; j< array.length; j++) {
+                    if (sortedArray[i] == array[j]) {
+                        indeksTabell[i] = j;
                     }
-
-                    indeksTabell[i] = minsteverdiIndex;
-
                 }
-
-
-
             }
-            return indeksTabell;//ok
+            return indeksTabell;
         }
     }
 
 
 
-    // Oppgave 9
-
-
-
-    // Oppgave 10
-
-
-
-
-    // main-metode for testing
-    // kan lage et array for hver oppgave? alt under her slettes før levering av oppgave
+    // main-metode for testing, slettes før innlevering
     public static void main(String[] args) {
         int[] tomtArray = {};
         int[] array1 = randPerm(10);
-        int[] array2 = randPerm(2);
-        int[] array3 = {1, 4, 4, 5, 4, 6, 7};
+
         int[] array8 = {1, 0, 4, 2, 7, -1};
 
-        // System.out.println("Test, oppgave 1:");
-        // System.out.println("Test, oppgave 2:");
-        //System.out.println("Test. Oppgave 8: " + Arrays.toString(indekssortering(array8)));
+
+        System.out.println("Opprinnelig array: " + Arrays.toString(array8));
+        System.out.println("Output oppgave 8: " + Arrays.toString(indekssortering(array8)));
 
 
-// 3 - Denne er OK  System.out.println("Test, oppgave 3: " + antallUlikeUsortert(array3));
+
+        // int[] array3 = {1, 4, 4, 5, 4, 6, 7};
+        // System.out.println("Output oppgave 3: " + antallUlikeUsortert(array3));
 
     }
 }
