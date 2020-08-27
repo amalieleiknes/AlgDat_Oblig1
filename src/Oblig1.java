@@ -62,17 +62,17 @@ public class Oblig1 {
 
 
     // Oppgave 8 - Denne er OK, men må fikse avvik
-    public static int[] indekssortering(int[] array) {
-        int[] indeksTabell = new int[array.length];//ok
-        int[] sortedArray = Arrays.copyOf(array, array.length);
+    public static int[] indekssortering(int[] a) {
+        int[] indeksTabell = new int[a.length];//ok
+        int[] sortedArray = Arrays.copyOf(a, a.length);
         Arrays.sort(sortedArray);       //hjelpetabell som er sortert i stigende rekkefølge
 
-        if (array.length < 1) {
+        if (a.length < 1) {
             return null;
         } else {                        // hvis arrayet er tomt returneres null
-            for(int i = 0; i< array.length; i++) {
-                for(int j = 0; j< array.length; j++) {
-                    if (sortedArray[i] == array[j]) {
+            for(int i = 0; i< a.length; i++) {
+                for(int j = 0; j< a.length; j++) {
+                    if (sortedArray[i] == a[j]) {
                         indeksTabell[i] = j;
                     }
                 }
@@ -81,20 +81,22 @@ public class Oblig1 {
         }
     }
 
-    // Oppgave 9 - Finne indeksene til de tre minste verdiene i tabellen
+    // Oppgave 9 - Nesten ferdig, mangler å bruke metode fra nr 8 men funker
     public static  int[] tredjeMin(int[] a){
-        int[] utTabell = new int[3];
+
+        int[] søkeTabell = {a[0], a[1], a[2]};
 
         // først må jeg finne de tre minste verdiene
-
         int m = 0;
         int nm = 1;
         int nnm = 2;
 
-        if(a[2] < a[0]){
+        // Objects.requireNonNull(indekssortering(søkeTabell));
+
+        if (a[2] < a[0]){
             m = 2; nnm = 0;
         }
-        if (a[2] < a[1]) {
+        if (a[2] < a[1]){
             nm = 2; nnm = 1;
         }
         if (a[1] < a[0]){
@@ -104,9 +106,6 @@ public class Oblig1 {
         int minverdi = a[m];                // minste verdi
         int nestminverdi = a[nm];           // nest minste verdi
         int nestnestminverdi = a[nnm];      // nest nest minste verdi
-
-        System.out.println(minverdi);
-
 
         for (int i = 3; i < a.length; i++){
             if (a[i] < nestnestminverdi){
@@ -120,34 +119,29 @@ public class Oblig1 {
 
                         m = i;
                         minverdi = a[m];              // ny størst
-                        System.out.println(minverdi);
+                    }
+                    else{
+                        nnm = nm;
+                        nestnestminverdi = nestminverdi; // ny nest nest størst
+
+                        nm = i;
+                        nestminverdi = a[nm];         // ny nest størst
+
                     }
                 }
-                else
-                {
-                    //nnm = ; denne må fikses???
-                    nestnestminverdi =a[nnm];     // ny nest nest størst
-
-                    nm = i;
-                    nestminverdi = a[nm];         // ny nest størst
-
+                else {
+                    nnm = i;
+                    nestnestminverdi =a[nnm];
                 }
             }
         }
 
-        /* Sto at dette måtte brukes, men hvordan??? Blir nesten riktig nå hehe
-        int min = Objects.requireNonNull(indekssortering(hei))[0];
-        int nmin = Objects.requireNonNull(indekssortering(hei))[1];
-        int nnmin = Objects.requireNonNull(indekssortering(hei))[2];
-        */
-
         // n i posisjon 0, nm i posisjon 1, nnm i posisjon 2
-        utTabell[0]=m;
-        utTabell[1]=nm;
-        utTabell[2]=nnm;
+        søkeTabell[0]=m;
+        søkeTabell[1]=nm;
+        søkeTabell[2]=nnm;
 
-        return utTabell;
-        // output: {5, 1, 3}
+        return søkeTabell;
     }
 
 
@@ -157,8 +151,9 @@ public class Oblig1 {
         int[] tomtArray = {};
         int[] array1 = randPerm(10);
 
-        int[] array9 = {5, 0, 4, 2, 7, -1};
-        System.out.println("Oppgave 9: " + Arrays.toString(tredjeMin(array9)));
+        int[] array9 = {-1, 5, 0, 4, 2, 7, -1, -8, -2, 4};
+        System.out.println("Opprinnelig array: " + Arrays.toString(array9));
+        System.out.println("Oppgave 9, output: " + Arrays.toString(tredjeMin(array9)));
 
 
         // int[] array8 = {1, 0, 4, 2, 7, -1};
