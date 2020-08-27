@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.Random;
 
 public class Oblig1 {
@@ -80,6 +81,75 @@ public class Oblig1 {
         }
     }
 
+    // Oppgave 9 - Finne indeksene til de tre minste verdiene i tabellen
+    public static  int[] tredjeMin(int[] a){
+        int[] utTabell = new int[3];
+
+        // først må jeg finne de tre minste verdiene
+
+        int m = 0;
+        int nm = 1;
+        int nnm = 2;
+
+        if(a[2] < a[0]){
+            m = 2; nnm = 0;
+        }
+        if (a[2] < a[1]) {
+            nm = 2; nnm = 1;
+        }
+        if (a[1] < a[0]){
+            m = 1; nm = 0;
+        }
+
+        int minverdi = a[m];                // minste verdi
+        int nestminverdi = a[nm];           // nest minste verdi
+        int nestnestminverdi = a[nnm];      // nest nest minste verdi
+
+        System.out.println(minverdi);
+
+
+        for (int i = 3; i < a.length; i++){
+            if (a[i] < nestnestminverdi){
+                if (a[i] < nestminverdi) {
+                    if (a[i] < minverdi) {
+                        nnm = nm;
+                        nestnestminverdi = nestminverdi; // ny nest nest størst
+
+                        nm = m;
+                        nestminverdi = minverdi;     // ny nest størst
+
+                        m = i;
+                        minverdi = a[m];              // ny størst
+                        System.out.println(minverdi);
+                    }
+                }
+                else
+                {
+                    //nnm = ; denne må fikses???
+                    nestnestminverdi =a[nnm];     // ny nest nest størst
+
+                    nm = i;
+                    nestminverdi = a[nm];         // ny nest størst
+
+                }
+            }
+        }
+
+        /* Sto at dette måtte brukes, men hvordan??? Blir nesten riktig nå hehe
+        int min = Objects.requireNonNull(indekssortering(hei))[0];
+        int nmin = Objects.requireNonNull(indekssortering(hei))[1];
+        int nnmin = Objects.requireNonNull(indekssortering(hei))[2];
+        */
+
+        // n i posisjon 0, nm i posisjon 1, nnm i posisjon 2
+        utTabell[0]=m;
+        utTabell[1]=nm;
+        utTabell[2]=nnm;
+
+        return utTabell;
+        // output: {5, 1, 3}
+    }
+
 
 
     // main-metode for testing, slettes før innlevering
@@ -87,13 +157,13 @@ public class Oblig1 {
         int[] tomtArray = {};
         int[] array1 = randPerm(10);
 
-        int[] array8 = {1, 0, 4, 2, 7, -1};
+        int[] array9 = {5, 0, 4, 2, 7, -1};
+        System.out.println("Oppgave 9: " + Arrays.toString(tredjeMin(array9)));
 
 
-        System.out.println("Opprinnelig array: " + Arrays.toString(array8));
-        System.out.println("Output oppgave 8: " + Arrays.toString(indekssortering(array8)));
-
-
+        // int[] array8 = {1, 0, 4, 2, 7, -1};
+        // System.out.println("Opprinnelig array: " + Arrays.toString(array8));
+        // System.out.println("Output oppgave 8: " + Arrays.toString(indekssortering(array8)));
 
         // int[] array3 = {1, 4, 4, 5, 4, 6, 7};
         // System.out.println("Output oppgave 3: " + antallUlikeUsortert(array3));
