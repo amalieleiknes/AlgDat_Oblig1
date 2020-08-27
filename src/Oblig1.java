@@ -13,14 +13,14 @@ public class Oblig1 {
         Random r = new Random();
 
         int[] a = new int[n];
-        Arrays.setAll(a, i -> i + 1);    // legger inn tallene 1, 2, . , n
+        Arrays.setAll(a, i -> i + 1);           // legger inn tallene 1, 2, . , n
 
-        for (int k = n - 1; k > 0; k--)  // løkke som går n - 1 ganger
+        for (int k = n - 1; k > 0; k--)         // løkke som går n - 1 ganger
         {
-            int i = r.nextInt(k+1);    // en tilfeldig tall fra 0 til k
-            bytt(a,k,i);                   // bytter om
+            int i = r.nextInt(k+1);       // en tilfeldig tall fra 0 til k
+            bytt(a,k,i);                        // bytter om
         }
-        return a;                        // permutasjonen returneres
+        return a;                               // permutasjonen returneres
     }
 
 
@@ -40,25 +40,25 @@ public class Oblig1 {
 
 
 
-    //Oppgave 3
-
+    //Oppgave 3 - Denne er OK
     public static int antallUlikeUsortert(int[] a){
         int antall = 0;
-        if(a.length == 0){
-            throw new ArrayIndexOutOfBoundsException("Arrayet er tomt: "+a.length);
-        } else{
+        boolean unik = false;
 
+        for(int i = 1; i<a.length; i++){
+            for(int j = 0; j<i; j++){
+                if(a[j]!=a[i]){
+                    unik = true;
+                } else{
+                    unik = false;
+                }
 
+            } if(unik){
+                antall++;
+            }
         }
-        
         return antall;
     }
-
-
-
-
-
-
 
     // Oppgave 4
 
@@ -71,16 +71,7 @@ public class Oblig1 {
     // Oppgave 5
 
 
-
-
-
-
-
-
-    //Oppgave 6
-
-
-
+    // Oppgave 6
 
 
 
@@ -88,15 +79,34 @@ public class Oblig1 {
 
 
 
+    // Oppgave 8 - den minste verdien sin index skal først i nytt array, og så i stigende rekkefølge
+    public static int[] indekssortering(int[] a) {
+        int[] indeksTabell = new int[a.length];//ok
+
+        int minsteverdiIndex = a.length-1;
+
+        if (a.length < 1) {
+            return null;
+        } else {
+
+            for(int i = 0; i<a.length; i++) {
+
+                for (int m = 0; m < a.length; m++) {//ok
+
+                    if (a[m] < a[minsteverdiIndex]) {
+                        minsteverdiIndex = m;
+                    }
+
+                    indeksTabell[i] = minsteverdiIndex;
+
+                }
 
 
 
-
-    // Oppgave 8
-
-
-
-
+            }
+            return indeksTabell;//ok
+        }
+    }
 
 
 
@@ -104,23 +114,26 @@ public class Oblig1 {
 
 
 
-
-
-
-
     // Oppgave 10
 
 
+
+
+    // main-metode for testing
+    // kan lage et array for hver oppgave? alt under her slettes før levering av oppgave
     public static void main(String[] args) {
-        System.out.println("Test, oppgave 1:");
+        int[] tomtArray = {};
+        int[] array1 = randPerm(10);
+        int[] array2 = randPerm(2);
+        int[] array3 = {1, 4, 4, 5, 4, 6, 7};
+        int[] array8 = {1, 0, 4, 2, 7, -1};
 
-        System.out.println("Test, oppgave 2:");
+        // System.out.println("Test, oppgave 1:");
+        // System.out.println("Test, oppgave 2:");
+        //System.out.println("Test. Oppgave 8: " + Arrays.toString(indekssortering(array8)));
 
-        System.out.println("Test, oppgave 3:");
+
+// 3 - Denne er OK  System.out.println("Test, oppgave 3: " + antallUlikeUsortert(array3));
+
     }
-
-
-
-
-
 }
