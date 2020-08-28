@@ -183,6 +183,29 @@ public class Oblig1 {
         }
     }
 
+    // Oppgave 10
+    public static boolean inneholdt(String a, String b){
+        boolean inneholder = false;
+
+        if(b.contentEquals(a) || a.isEmpty()){
+            inneholder = true;
+        }
+        else {
+
+
+            //hvis bokstavene i A er i B returneres true. ellers false.
+
+
+            // gjøre om bokstavene til et heltall
+
+            int A = 1; // er det dette han mener?
+        }
+
+        return inneholder;
+    }
+
+
+
 
 
     // main-metode for testing, slettes før innlevering
@@ -191,6 +214,9 @@ public class Oblig1 {
         int[] likeTallArray = {5, 5, 5, 5, 5, 5, 5, 5, 5, 5};
         int[] minusTallArray = {-1,-2,-3,-1,-7,-1000};
         int[] randomArray = randPerm(10);
+        String a = "ABCA";
+        String b = "ALBLCLAJA";
+        System.out.print("Oppgave 9: " + inneholdt(a,b));
 
         int[] array9 = {-1, 5, 0, 4, 2, 7, -1, -8, -2, 4};
        // System.out.println("Opprinnelig array: " + Arrays.toString(array9));
@@ -199,17 +225,12 @@ public class Oblig1 {
        // System.out.println("Oppgave 9, output: " + Arrays.toString(tredjeMin(minusTallArray)));
        // System.out.println("Oppgave 9, output: " + Arrays.toString(tredjeMin(randomArray)));
 
-
         // int[] array8 = {1, 0, 4, 2, 7, -1};
         // System.out.println("Opprinnelig array: " + Arrays.toString(array8));
          //System.out.println("Output oppgave 8: " + Arrays.toString(indekssortering(likeTallArray)));
 
-
-
          //int[] array3 = {1, 1, 1, 2};
          //System.out.println("Output oppgave 3: " + antallUlikeUsortert(array3));
-
-
 
     }
 }
