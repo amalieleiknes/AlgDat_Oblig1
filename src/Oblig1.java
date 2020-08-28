@@ -52,23 +52,36 @@ public class Oblig1 {
         return antallUlike;
     }
 
-    //Oppgave 3 - Denne er OK, men må fikse avvik
+    //Oppgave 3 - Denne er OK, avvik OK
     public static int antallUlikeUsortert(int[] a){
-        int antall = 0;
+        int antall = 1;
         boolean unik = false;
 
-        for(int i = 1; i<a.length; i++){
-            for(int j = 0; j<i; j++){
-                if(a[j]!=a[i]){
-                    unik = true;
-                } else{
-                    unik = false;
-                }
+        if(a.length<1){
+            return 0;
+        }
 
-            } if(unik){
+        for(int i = 1; i<a.length; i++){        //går gjennom arrayet og sjekker om tallet har vært tidl
+
+            int nyttTall = a[i];        //variabelen som sjekkes om har vært tidligere
+
+            for(int j = i+1; j<a.length; j++) {
+
+                int telteTall = a[j];
+
+                if(nyttTall != telteTall && telteTall!= a[0]){
+                    unik=true;
+                } else {
+                    unik=false;
+                    break;
+                }
+            }
+
+            if(unik){
                 antall++;
             }
         }
+
         return antall;
     }
 
@@ -84,7 +97,7 @@ public class Oblig1 {
     // Oppgave 7
 
 
-    // Oppgave 8 - Denne er OK, men må fikse avvik
+    // Oppgave 8 - Denne fungerer ikke om det er like tall i tabellen, men skjønner ikke hvorfor???
     public static int[] indekssortering(int[] a) {
         int[] indeksTabell = new int[a.length];//ok
         int[] sortedArray = Arrays.copyOf(a, a.length);
@@ -189,10 +202,14 @@ public class Oblig1 {
 
         // int[] array8 = {1, 0, 4, 2, 7, -1};
         // System.out.println("Opprinnelig array: " + Arrays.toString(array8));
-         System.out.println("Output oppgave 8: " + Arrays.toString(indekssortering(likeTallArray)));
+         //System.out.println("Output oppgave 8: " + Arrays.toString(indekssortering(likeTallArray)));
 
-        // int[] array3 = {1, 4, 4, 5, 4, 6, 7};
-        // System.out.println("Output oppgave 3: " + antallUlikeUsortert(array3));
+
+
+         //int[] array3 = {1, 1, 1, 2};
+         //System.out.println("Output oppgave 3: " + antallUlikeUsortert(array3));
+
+
 
     }
 }
