@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.Random;
 
@@ -25,7 +26,18 @@ public class Oblig1 {
     }
 
     // Oppgave 1
-
+    public static int maks(int[] a){
+        if(a.length == 0){
+            throw new NoSuchElementException("Listen er tom!");
+        }
+        int maksVerdi = a[0];
+        for(int i = 1; i < a.length; i++){
+            if(maksVerdi <= a[i]){
+              maksVerdi = a[i];
+            }
+        }
+        return maksVerdi;
+    }
 
     // Oppgave 2
 
@@ -151,10 +163,14 @@ public class Oblig1 {
         int[] tomtArray = {};
         int[] array1 = randPerm(10);
 
+
         int[] array9 = {-1, 5, 0, 4, 2, 7, -1, -8, -2, 4};
         System.out.println("Opprinnelig array: " + Arrays.toString(array9));
         System.out.println("Oppgave 9, output: " + Arrays.toString(tredjeMin(array9)));
 
+        //Oblig1.maks(tomtArray);
+        System.out.println("Dette er oppgave maks();");
+        System.out.println(Oblig1.maks(array9));
 
         // int[] array8 = {1, 0, 4, 2, 7, -1};
         // System.out.println("Opprinnelig array: " + Arrays.toString(array8));
