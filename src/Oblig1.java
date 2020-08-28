@@ -40,6 +40,28 @@ public class Oblig1 {
     }
 
     // Oppgave 2
+    public static int antallUlikeSortert(int[] a){
+        boolean sortert = true;
+        for(int i = 0; i < a.length; i++){
+            if(a[i] < a[i-1]){
+                sortert = false;
+            }
+        }
+        if(!sortert){
+            throw new IllegalStateException("Tabellen er ikke sortert stigende!");
+        }
+
+        int antallUlike = 1;
+        if(a.length == 0){
+            antallUlike = 0;
+        }
+        for(int i = 1; i < a.length; i++){
+            if(a[i] != a[i-1]){
+                antallUlike++;
+            }
+        }
+        return antallUlike;
+    }
 
     //Oppgave 3 - Denne er OK, men må fikse avvik
     public static int antallUlikeUsortert(int[] a){
