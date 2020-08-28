@@ -32,11 +32,25 @@ public class Oblig1 {
         }
         int maksVerdi = a[0];
         for(int i = 1; i < a.length; i++){
-            if(maksVerdi <= a[i]){
-              maksVerdi = a[i];
+            int nesteTalliRekken = a[i];  //for aa unngaa unodvendig operasjoner
+            if(maksVerdi <= nesteTalliRekken){
+              maksVerdi = nesteTalliRekken;
             }
         }
         return maksVerdi;
+    }
+
+    //metode som teller hvor mange ganger en ombytting skjer
+    public static int ombyttinger(int[] a){
+        int ombytting = 0;
+        int maksVerdi = a[0];
+        for(int i = 1; i < a.length; i++){
+            int nesteTalliRekken = a[i];
+            if(maksVerdi <= nesteTalliRekken){
+                ombytting++;
+            }
+        }
+        return ombytting;
     }
 
     // Oppgave 2
@@ -191,8 +205,11 @@ public class Oblig1 {
         System.out.println("Oppgave 9, output: " + Arrays.toString(tredjeMin(array9)));
 
         //Oblig1.maks(tomtArray);
-        System.out.println("Dette er oppgave maks();");
-        System.out.println(Oblig1.maks(array9));
+        System.out.println("Dette er Oppgave1 maks();");
+        System.out.println("Det største tallet i listen: "+Oblig1.maks(array9));
+
+        System.out.println("Dette er Oppgave1 ombyttinger();");
+        System.out.println("Det tok " + ombyttinger(array9) + " omflyttinger å flytte det største tallet bakerst.");
 
         // int[] array8 = {1, 0, 4, 2, 7, -1};
         // System.out.println("Opprinnelig array: " + Arrays.toString(array8));
