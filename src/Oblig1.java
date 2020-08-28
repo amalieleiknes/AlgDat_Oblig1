@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.Random;
 
@@ -81,67 +82,70 @@ public class Oblig1 {
         }
     }
 
-    // Oppgave 9 - Nesten ferdig, mangler å bruke metode fra nr 8 men funker
-    public static  int[] tredjeMin(int[] a){
+    // Oppgave 9 - OK
+    public static  int[] tredjeMin(int[] a) {
+        if (a.length < 3) {
+            throw new NoSuchElementException("Det er mindre enn tre elementer i a, antall: " + a.length);
+        } else {
+            int[] sokeTabell = {a[0], a[1], a[2]}; //lager en ny tabell med kun de tre første tallene fra a
 
-        int[] søkeTabell = {a[0], a[1], a[2]};
+            int m = Objects.requireNonNull(indekssortering(sokeTabell))[0]; // minsteverdi sin index
+            int nm = Objects.requireNonNull(indekssortering(sokeTabell))[1]; // nest minste verdi sin indeks
+            int nnm = Objects.requireNonNull(indekssortering(sokeTabell))[2];// nest nest minste verdi sin indeks
 
-        // først må jeg finne de tre minste verdiene
-        int m = 0;
-        int nm = 1;
-        int nnm = 2;
+            if (a[2] < a[0]) {
+                m = 2;
+                nnm = 0;
+            }
+            if (a[2] < a[1]) {
+                nm = 2;
+                nnm = 1;
+            }
+            if (a[1] < a[0]) {
+                m = 1;
+                nm = 0;
+            }
 
-        // Objects.requireNonNull(indekssortering(søkeTabell));
+            int minverdi = a[m];                // minste verdi
+            int nestminverdi = a[nm];           // nest minste verdi
+            int nestnestminverdi = a[nnm];      // nest nest minste verdi
 
-        if (a[2] < a[0]){
-            m = 2; nnm = 0;
-        }
-        if (a[2] < a[1]){
-            nm = 2; nnm = 1;
-        }
-        if (a[1] < a[0]){
-            m = 1; nm = 0;
-        }
 
-        int minverdi = a[m];                // minste verdi
-        int nestminverdi = a[nm];           // nest minste verdi
-        int nestnestminverdi = a[nnm];      // nest nest minste verdi
+            for (int i = 3; i < a.length; i++) {
+                if (a[i] < nestnestminverdi) {
+                    if (a[i] < nestminverdi) {
+                        if (a[i] < minverdi) {  // hvis neste verdi er mindre enn minste verdi
+                            nnm = nm;
+                            nestnestminverdi = nestminverdi; // ny nest nest størst
 
-        for (int i = 3; i < a.length; i++){
-            if (a[i] < nestnestminverdi){
-                if (a[i] < nestminverdi) {
-                    if (a[i] < minverdi) {
-                        nnm = nm;
-                        nestnestminverdi = nestminverdi; // ny nest nest størst
+                            nm = m;
+                            nestminverdi = minverdi;     // ny nest størst
 
-                        nm = m;
-                        nestminverdi = minverdi;     // ny nest størst
+                            m = i;
+                            minverdi = a[m];              // ny størst
+                        }
+                        else {  // hvis neste tall er < nestminste men ikke mindre enn minste
+                            nnm = nm;
+                            nestnestminverdi = nestminverdi; // ny nest nest størst
 
-                        m = i;
-                        minverdi = a[m];              // ny størst
+                            nm = i;
+                            nestminverdi = a[nm];         // ny nest størst
+
+                        }
+                    } else {
+                        nnm = i;
+                        nestnestminverdi = a[nnm];
                     }
-                    else{
-                        nnm = nm;
-                        nestnestminverdi = nestminverdi; // ny nest nest størst
-
-                        nm = i;
-                        nestminverdi = a[nm];         // ny nest størst
-
-                    }
-                }
-                else {
-                    nnm = i;
-                    nestnestminverdi =a[nnm];
                 }
             }
+
+            // n i posisjon 0, nm i posisjon 1, nnm i posisjon 2
+            sokeTabell[0] = m;
+            sokeTabell[1] = nm;
+            sokeTabell[2] = nnm;
+
+            return sokeTabell;
         }
-
-        // n i posisjon 0, nm i posisjon 1, nnm i posisjon 2
-        søkeTabell[0]=m;
-        søkeTabell[1]=nm;
-        søkeTabell[2]=nnm;
-
-        return søkeTabell;
     }
 
 
@@ -149,16 +153,21 @@ public class Oblig1 {
     // main-metode for testing, slettes før innlevering
     public static void main(String[] args) {
         int[] tomtArray = {};
-        int[] array1 = randPerm(10);
+        int[] likeTallArray = {5, 5, 5, 5, 5, 5, 5, 5, 5, 5};
+        int[] minusTallArray = {-1,-2,-3,-1,-7,-1000};
+        int[] randomArray = randPerm(10);
 
         int[] array9 = {-1, 5, 0, 4, 2, 7, -1, -8, -2, 4};
-        System.out.println("Opprinnelig array: " + Arrays.toString(array9));
-        System.out.println("Oppgave 9, output: " + Arrays.toString(tredjeMin(array9)));
+       // System.out.println("Opprinnelig array: " + Arrays.toString(array9));
+       // System.out.println("Oppgave 9, output: " + Arrays.toString(tredjeMin(array9)));
+       // System.out.println("Oppgave 9, output: " + Arrays.toString(tredjeMin(likeTallArray)));
+       // System.out.println("Oppgave 9, output: " + Arrays.toString(tredjeMin(minusTallArray)));
+       // System.out.println("Oppgave 9, output: " + Arrays.toString(tredjeMin(randomArray)));
 
 
         // int[] array8 = {1, 0, 4, 2, 7, -1};
         // System.out.println("Opprinnelig array: " + Arrays.toString(array8));
-        // System.out.println("Output oppgave 8: " + Arrays.toString(indekssortering(array8)));
+         System.out.println("Output oppgave 8: " + Arrays.toString(indekssortering(likeTallArray)));
 
         // int[] array3 = {1, 4, 4, 5, 4, 6, 7};
         // System.out.println("Output oppgave 3: " + antallUlikeUsortert(array3));
