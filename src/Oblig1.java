@@ -52,7 +52,7 @@ public class Oblig1 {
         return antallUlike;
     }
 
-    //Oppgave 3 - Denne er OK, avvik OK
+    //Oppgave 3 - Denne er ferdig, har testet
     public static int antallUlikeUsortert(int[] a){
         int antall = 1;
         boolean unik = false;
@@ -216,21 +216,6 @@ public class Oblig1 {
         int[] randomArray = randPerm(10);
         String a = "ABCA";
         String b = "ALBLCLAJA";
-        System.out.print("Oppgave 9: " + inneholdt(a,b));
-
-        int[] array9 = {-1, 5, 0, 4, 2, 7, -1, -8, -2, 4};
-       // System.out.println("Opprinnelig array: " + Arrays.toString(array9));
-       // System.out.println("Oppgave 9, output: " + Arrays.toString(tredjeMin(array9)));
-       // System.out.println("Oppgave 9, output: " + Arrays.toString(tredjeMin(likeTallArray)));
-       // System.out.println("Oppgave 9, output: " + Arrays.toString(tredjeMin(minusTallArray)));
-       // System.out.println("Oppgave 9, output: " + Arrays.toString(tredjeMin(randomArray)));
-
-        // int[] array8 = {1, 0, 4, 2, 7, -1};
-        // System.out.println("Opprinnelig array: " + Arrays.toString(array8));
-         //System.out.println("Output oppgave 8: " + Arrays.toString(indekssortering(likeTallArray)));
-
-         //int[] array3 = {1, 1, 1, 2};
-         //System.out.println("Output oppgave 3: " + antallUlikeUsortert(array3));
 
     }
 }
