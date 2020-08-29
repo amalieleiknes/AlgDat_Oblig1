@@ -52,7 +52,7 @@ public class Oblig1 {
         return antallUlike;
     }
 
-    //Oppgave 3 - Denne er ferdig, har testet
+    //Oppgave 3 - Denne er ok med testene til foreleser, men blir feil hvis man prøver med minusTallArray??????
     public static int antallUlikeUsortert(int[] a){
         int antall = 1;
         boolean unik = false;
@@ -99,17 +99,29 @@ public class Oblig1 {
 
     // Oppgave 8 - Denne fungerer ikke om det er like tall i tabellen, men skjønner ikke hvorfor???
     public static int[] indekssortering(int[] a) {
-        int[] indeksTabell = new int[a.length];//ok
+        int[] indeksTabell = new int[a.length];
         int[] sortedArray = Arrays.copyOf(a, a.length);
         Arrays.sort(sortedArray);       //hjelpetabell som er sortert i stigende rekkefølge
 
         if (a.length < 1) {
             return null;
         } else {                        // hvis arrayet er tomt returneres null
-            for(int i = 0; i< a.length; i++) {
-                for(int j = 0; j< a.length; j++) {
-                    if (sortedArray[i] == a[j]) {
-                        indeksTabell[i] = j;
+            for (int i = 0; i < a.length; i++) {           // løkke der vi tildeler indeksTabell[i] en verdi
+                for (int j = 0; j < a.length; j++) {       // løkke der vi sjekker gjennom arrayet om vi finner riktig verdi (sammenligner sortedArray med a, finner lik verdi)
+                    if (sortedArray[i] == a[j]) {        // finner neste tall i sorted array i a, som er neste indeks i indeksTabell
+
+                        // når den har funnet en lik må vi sjekke om denne indeksen allerede ligger i indeksTabell.
+                        // hvis den allerede ligger der må metoden lete etter neste forekomst istedenfor å legge til indeksen i tabellen.
+                        // men dette får ikke jeg til
+
+
+                        // denne if-setningen får array med opptil 2 like tall til å bli riktig, me må finne en permanent løsning
+                        if (i > 0 && sortedArray[i] == sortedArray[i - 1]) {
+                            break;
+                        }
+
+                        indeksTabell[i] = j;        // legger til indeksen til tallet som er funnet i indeksTabell.
+
                     }
                 }
             }
@@ -206,16 +218,16 @@ public class Oblig1 {
 
 
 
-
-
     // main-metode for testing, slettes før innlevering
     public static void main(String[] args) {
         int[] tomtArray = {};
-        int[] likeTallArray = {5, 5, 5, 5, 5, 5, 5, 5, 5, 5};
+        int[] likeTallArray = {5, 5, 5, 5, 5, 5};
         int[] minusTallArray = {-1,-2,-3,-1,-7,-1000};
         int[] randomArray = randPerm(10);
         String a = "ABCA";
         String b = "ALBLCLAJA";
+
+        System.out.println("Opgpave 8: " + antallUlikeUsortert(minusTallArray));
 
     }
 }
