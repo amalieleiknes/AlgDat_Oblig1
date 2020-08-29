@@ -28,7 +28,7 @@ public class Oblig1 {
     // Oppgave 1
 
 
-    // Oppgave 2
+    // Oppgave 2 - ikke kjørt testene på denne
     public static int antallUlikeSortert(int[] a){
         boolean sortert = true;
         for(int i = 0; i < a.length; i++){
@@ -88,7 +88,19 @@ public class Oblig1 {
     // Oppgave 4
 
 
-    // Oppgave 5
+    // Oppgave 5 - ikke kjørt testene på denne
+    public static void rotasjon(char[] a){
+        if(a.length == 0){
+        }
+        else{
+            char temp = a[a.length-1];
+            for(int i  = a.length-1; i > 0; i--){
+                a[i] = a[i-1];
+            }
+            a[0] = temp;
+        }
+
+    }
 
 
     // Oppgave 6
@@ -227,7 +239,15 @@ public class Oblig1 {
         String a = "ABCA";
         String b = "ALBLCLAJA";
 
-        System.out.println("Opgpave 8: " + antallUlikeUsortert(minusTallArray));
+        /*System.out.println("Opgpave 8: " + antallUlikeUsortert(minusTallArray));*/
+
+        //Kjører metoden i oppgave 5:
+        char[] c = {'A','B','C','D','E','G','H','I','J'};
+        char[] d = {'A'};
+        char[] e = {};
+        System.out.println(Arrays.toString(c));
+        rotasjon(c);
+        System.out.println(Arrays.toString(c));
 
     }
 }
