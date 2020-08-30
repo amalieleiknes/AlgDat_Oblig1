@@ -52,38 +52,33 @@ public class Oblig1 {
         return antallUlike;
     }
 
-    //Oppgave 3 - Denne er ok med testene til foreleser, men blir feil hvis man prøver med minusTallArray??????
+    //Oppgave 3 - Denne er ok nå, hehe
     public static int antallUlikeUsortert(int[] a){
         int antall = 1;
+        int nyttTall;
         boolean unik = false;
-
         if(a.length<1){
             return 0;
         }
-
         for(int i = 1; i<a.length; i++){        //går gjennom arrayet og sjekker om tallet har vært tidl
-
-            int nyttTall = a[i];        //variabelen som sjekkes om har vært tidligere
-
+            nyttTall = a[i];                    //variabelen som sjekkes om har vært tidligere
             for(int j = i+1; j<a.length; j++) {
-
                 int telteTall = a[j];
-
-                if(nyttTall != telteTall && telteTall!= a[0]){
+                if(nyttTall != telteTall && nyttTall!= a[0]){
                     unik=true;
                 } else {
                     unik=false;
                     break;
                 }
             }
-
             if(unik){
                 antall++;
             }
         }
-
         return antall;
     }
+
+
 
     // Oppgave 4
 
