@@ -121,20 +121,25 @@ public class Oblig1 {
     //https://www.geeksforgeeks.org/sort-even-numbers-ascending-order-sort-odd-numbers-descending-order/
     public static void delsortering(int[] a){
         if(a == null){
-            throw new NullPointerException("Listen er null.");
+            throw new NullPointerException("Listen er null."); //kaster exception dersom listen er null.
         }
         if(a.length == 0){
-            throw new NoSuchElementException("Listen er tom!");
+            throw new NoSuchElementException("Listen er tom!"); //kaster exception dersom listen er tom.
         }
 
+        //går først gjennom array og finner oddetall. Setter oddetall til et negativt tall, så det
+        //kommer helt til venstre i tabellen.
         for(int i = 0; i < a.length; i++){
-            if(a[i] % 1 != 0){
+            if((a[i] % 2) != 0){
                 a[i] *= -1;
             }
         }
+        //sorterer array i stigende rekkefølge.
         Arrays.sort(a);
+
+        //går gjennom array på nytt og gjør oddetallene til positive tall igjen.
         for(int i = 0; i < a.length; i++){
-            if(a[i] % 1 != 0){
+            if((a[i] % 2) != 0){
                 a[i] *= -1;
             }
         }
