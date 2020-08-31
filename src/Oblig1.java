@@ -54,6 +54,9 @@ public class Oblig1 {
     }
 
     // Oppgave 2
+
+
+    // Oppgave 2 - ikke kjørt testene på denne
     public static int antallUlikeSortert(int[] a){
         boolean sortert = true;
         for(int i = 0; i < a.length; i++){
@@ -77,51 +80,94 @@ public class Oblig1 {
         return antallUlike;
     }
 
-    //Oppgave 3 - Denne er OK, men må fikse avvik
+    //Oppgave 3 - Denne er ok nå, hehe
     public static int antallUlikeUsortert(int[] a){
-        int antall = 0;
+        int antall = 1;
+        int nyttTall;
         boolean unik = false;
-
-        for(int i = 1; i<a.length; i++){
-            for(int j = 0; j<i; j++){
-                if(a[j]!=a[i]){
-                    unik = true;
-                } else{
-                    unik = false;
+        if(a.length<1){
+            return 0;
+        }
+        for(int i = 1; i<a.length; i++){        //går gjennom arrayet og sjekker om tallet har vært tidl
+            nyttTall = a[i];                    //variabelen som sjekkes om har vært tidligere
+            for(int j = i+1; j<a.length; j++) {
+                int telteTall = a[j];
+                if(nyttTall != telteTall && nyttTall!= a[0]){
+                    unik=true;
+                } else {
+                    unik=false;
+                    break;
                 }
-
-            } if(unik){
+            }
+            if(unik){
                 antall++;
             }
         }
         return antall;
     }
 
+
+
     // Oppgave 4
 
 
-    // Oppgave 5
+    // Oppgave 5 - ikke kjørt testene på denne
+    public static void rotasjon(char[] a){
+        if(a.length == 0){
+            return;
+        }
+        else{
+            char temp = a[a.length-1];
+            for(int i  = a.length-1; i > 0; i--){
+                a[i] = a[i-1];
+            }
+            a[0] = temp;
+        }
+    }
 
 
-    // Oppgave 6
-
+    // Oppgave 6 - ikke kjørt testene på denne
+    public static void rotasjon(char[] a, int k){
+        if(k < 0){
+            k += a.length;
+        }
+        for(int i = 0; i < k; i++){
+            char temp = a[a.length-1];
+            for(int j  = a.length-1; j > 0; j--){
+                a[j] = a[j-1];
+            }
+            a[0] = temp;
+        }
+    }
 
     // Oppgave 7
 
 
-    // Oppgave 8 - Denne er OK, men må fikse avvik
+    // Oppgave 8 - Denne fungerer ikke om det er like tall i tabellen, men skjønner ikke hvorfor???
     public static int[] indekssortering(int[] a) {
-        int[] indeksTabell = new int[a.length];//ok
+        int[] indeksTabell = new int[a.length];
         int[] sortedArray = Arrays.copyOf(a, a.length);
         Arrays.sort(sortedArray);       //hjelpetabell som er sortert i stigende rekkefølge
 
         if (a.length < 1) {
             return null;
         } else {                        // hvis arrayet er tomt returneres null
-            for(int i = 0; i< a.length; i++) {
-                for(int j = 0; j< a.length; j++) {
-                    if (sortedArray[i] == a[j]) {
-                        indeksTabell[i] = j;
+            for (int i = 0; i < a.length; i++) {           // løkke der vi tildeler indeksTabell[i] en verdi
+                for (int j = 0; j < a.length; j++) {       // løkke der vi sjekker gjennom arrayet om vi finner riktig verdi (sammenligner sortedArray med a, finner lik verdi)
+                    if (sortedArray[i] == a[j]) {        // finner neste tall i sorted array i a, som er neste indeks i indeksTabell
+
+                        // når den har funnet en lik må vi sjekke om denne indeksen allerede ligger i indeksTabell.
+                        // hvis den allerede ligger der må metoden lete etter neste forekomst istedenfor å legge til indeksen i tabellen.
+                        // men dette får ikke jeg til
+
+
+                        // denne if-setningen får array med opptil 2 like tall til å bli riktig, me må finne en permanent løsning
+                        if (i > 0 && sortedArray[i] == sortedArray[i - 1]) {
+                            break;
+                        }
+
+                        indeksTabell[i] = j;        // legger til indeksen til tallet som er funnet i indeksTabell.
+
                     }
                 }
             }
@@ -129,80 +175,92 @@ public class Oblig1 {
         }
     }
 
-    // Oppgave 9 - Nesten ferdig, mangler å bruke metode fra nr 8 men funker
-    public static  int[] tredjeMin(int[] a){
+    // Oppgave 9 - OK
+    public static  int[] tredjeMin(int[] a) {
+        if (a.length < 3) {
+            throw new NoSuchElementException("Det er mindre enn tre elementer i a, antall: " + a.length);
+        } else {
+            int[] sokeTabell = {a[0], a[1], a[2]}; //lager en ny tabell med kun de tre første tallene fra a
 
-        int[] søkeTabell = {a[0], a[1], a[2]};
+            int m = Objects.requireNonNull(indekssortering(sokeTabell))[0]; // minsteverdi sin index
+            int nm = Objects.requireNonNull(indekssortering(sokeTabell))[1]; // nest minste verdi sin indeks
+            int nnm = Objects.requireNonNull(indekssortering(sokeTabell))[2];// nest nest minste verdi sin indeks
 
-        // først må jeg finne de tre minste verdiene
-        int m = 0;
-        int nm = 1;
-        int nnm = 2;
+            if (a[2] < a[0]) {
+                m = 2;
+                nnm = 0;
+            }
+            if (a[2] < a[1]) {
+                nm = 2;
+                nnm = 1;
+            }
+            if (a[1] < a[0]) {
+                m = 1;
+                nm = 0;
+            }
 
-        // Objects.requireNonNull(indekssortering(søkeTabell));
+            int minverdi = a[m];                // minste verdi
+            int nestminverdi = a[nm];           // nest minste verdi
+            int nestnestminverdi = a[nnm];      // nest nest minste verdi
 
-        if (a[2] < a[0]){
-            m = 2; nnm = 0;
-        }
-        if (a[2] < a[1]){
-            nm = 2; nnm = 1;
-        }
-        if (a[1] < a[0]){
-            m = 1; nm = 0;
-        }
 
-        int minverdi = a[m];                // minste verdi
-        int nestminverdi = a[nm];           // nest minste verdi
-        int nestnestminverdi = a[nnm];      // nest nest minste verdi
+            for (int i = 3; i < a.length; i++) {
+                if (a[i] < nestnestminverdi) {
+                    if (a[i] < nestminverdi) {
+                        if (a[i] < minverdi) {  // hvis neste verdi er mindre enn minste verdi
+                            nnm = nm;
+                            nestnestminverdi = nestminverdi; // ny nest nest størst
 
-        for (int i = 3; i < a.length; i++){
-            if (a[i] < nestnestminverdi){
-                if (a[i] < nestminverdi) {
-                    if (a[i] < minverdi) {
-                        nnm = nm;
-                        nestnestminverdi = nestminverdi; // ny nest nest størst
+                            nm = m;
+                            nestminverdi = minverdi;     // ny nest størst
 
-                        nm = m;
-                        nestminverdi = minverdi;     // ny nest størst
+                            m = i;
+                            minverdi = a[m];              // ny størst
+                        }
+                        else {  // hvis neste tall er < nestminste men ikke mindre enn minste
+                            nnm = nm;
+                            nestnestminverdi = nestminverdi; // ny nest nest størst
 
-                        m = i;
-                        minverdi = a[m];              // ny størst
+                            nm = i;
+                            nestminverdi = a[nm];         // ny nest størst
+
+                        }
+                    } else {
+                        nnm = i;
+                        nestnestminverdi = a[nnm];
                     }
-                    else{
-                        nnm = nm;
-                        nestnestminverdi = nestminverdi; // ny nest nest størst
-
-                        nm = i;
-                        nestminverdi = a[nm];         // ny nest størst
-
-                    }
-                }
-                else {
-                    nnm = i;
-                    nestnestminverdi =a[nnm];
                 }
             }
+
+            // n i posisjon 0, nm i posisjon 1, nnm i posisjon 2
+            sokeTabell[0] = m;
+            sokeTabell[1] = nm;
+            sokeTabell[2] = nnm;
+
+            return sokeTabell;
         }
-
-        // n i posisjon 0, nm i posisjon 1, nnm i posisjon 2
-        søkeTabell[0]=m;
-        søkeTabell[1]=nm;
-        søkeTabell[2]=nnm;
-
-        return søkeTabell;
     }
 
+    // Oppgave 10
+    public static boolean inneholdt(String a, String b){
+        boolean inneholder = false;
+
+        if(b.contentEquals(a) || a.isEmpty()){
+            inneholder = true;
+        }
+        else {
 
 
-    // main-metode for testing, slettes før innlevering
-    public static void main(String[] args) {
-        int[] tomtArray = {};
-        int[] array1 = randPerm(10);
+            //hvis bokstavene i A er i B returneres true. ellers false.
 
 
-        int[] array9 = {-1, 5, 0, 4, 2, 7, -1, -8, -2, 4};
-        System.out.println("Opprinnelig array: " + Arrays.toString(array9));
-        System.out.println("Oppgave 9, output: " + Arrays.toString(tredjeMin(array9)));
+            // gjøre om bokstavene til et heltall
+
+            int A = 1; // er det dette han mener?
+        }
+
+        return inneholder;
+    }
 
         //Oblig1.maks(tomtArray);
         System.out.println("Dette er Oppgave1 maks();");
@@ -211,12 +269,26 @@ public class Oblig1 {
         System.out.println("Dette er Oppgave1 ombyttinger();");
         System.out.println("Det tok " + ombyttinger(array9) + " omflyttinger å flytte det største tallet bakerst.");
 
-        // int[] array8 = {1, 0, 4, 2, 7, -1};
-        // System.out.println("Opprinnelig array: " + Arrays.toString(array8));
-        // System.out.println("Output oppgave 8: " + Arrays.toString(indekssortering(array8)));
 
-        // int[] array3 = {1, 4, 4, 5, 4, 6, 7};
-        // System.out.println("Output oppgave 3: " + antallUlikeUsortert(array3));
+    // main-metode for testing, slettes før innlevering
+    public static void main(String[] args) {
+        int[] tomtArray = {};
+        int[] likeTallArray = {5, 5, 5, 5, 5, 5};
+        int[] minusTallArray = {-1,-2,-3,-1,-7,-1000};
+        int[] randomArray = randPerm(10);
+        String a = "ABCA";
+        String b = "ALBLCLAJA";
+
+        /*System.out.println("Opgpave 8: " + antallUlikeUsortert(minusTallArray));*/
+
+        //Kjører metoden i oppgave 5:
+        char[] c = {'A','B','C','D','E', 'F','G','H','I','J'};
+        char[] d = {'A'};
+        char[] e = {};
+        System.out.println(Arrays.toString(c));
+        /*rotasjon(e);*/
+        rotasjon(c, -4);
+        System.out.println(Arrays.toString(c));
 
     }
 }
