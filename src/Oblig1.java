@@ -1,21 +1,22 @@
-import java.util.Arrays;
-import java.util.NoSuchElementException;
-import java.util.Objects;
-import java.util.Random;
+import java.util.*;
+
+import static java.util.Arrays.*;
 
 public class Oblig1 {
 
     // Metoder som generer testverdier til int[] a. Kilde: Kompendie til "appolonius", url. "https://www.cs.hioa.no/~ulfu/appolonius/kap1/1/kap11.html#1.1.2", Programkode 1.1.8 d og e.
     public static void bytt(int[] a, int i, int j)
     {
-        int temp = a[i]; a[i] = a[j]; a[j] = temp;
+        int temp = a[i];
+        a[i] = a[j];
+        a[j] = temp;
     }
 
     public static int[] randPerm(int n){
         Random r = new Random();
 
         int[] a = new int[n];
-        Arrays.setAll(a, i -> i + 1);           // legger inn tallene 1, 2, . , n
+        setAll(a, i -> i + 1);           // legger inn tallene 1, 2, . , n
 
         for (int k = n - 1; k > 0; k--)         // løkke som går n - 1 ganger
         {
@@ -26,27 +27,37 @@ public class Oblig1 {
     }
 
     // Oppgave 1
+
+    //hentet hjelp fra: https://stackoverflow.com/questions/34745203/using-a-for-loop-to-manually-sort-an-array-java
     public static int maks(int[] a){
         if(a.length == 0){
             throw new NoSuchElementException("Listen er tom!");
         }
         int maksVerdi = a[0];
-        for(int i = 1; i < a.length; i++){
-            int nesteTalliRekken = a[i];  //for aa unngaa unodvendig operasjoner
-            if(maksVerdi <= nesteTalliRekken){
-              maksVerdi = nesteTalliRekken;
+        System.out.println("Usortert liste: " + Arrays.toString(a));
+        for(int i = 0; i < a.length; i++){
+            for(int j = i+1; j < a.length; j++){
+                if(a[i] > a[j]){
+                    int midlertidig = a[i];  //setter den største verdien "til side"
+                    a[i] = a[j];             //tilegner plassen med tallet som er minst
+                    a[j] = midlertidig;      //setter inn igjen den største verdien en plass frem
+                    maksVerdi = a[j];
+                }
             }
         }
+        System.out.println("Sortert liste: " + Arrays.toString(a));
         return maksVerdi;
     }
 
-    //metode som teller hvor mange ganger en ombytting skjer
+    //Oppgave 1
+    //metode som teller hvor mange ganger en ombytting skjer - skal regne ut gjennomsnittet
     public static int ombyttinger(int[] a){
         int ombytting = 0;
         int maksVerdi = a[0];
         for(int i = 1; i < a.length; i++){
-            int nesteTalliRekken = a[i];
+            int nesteTalliRekken = a[i];  //for å unngå unødvendig mange operasjoner
             if(maksVerdi <= nesteTalliRekken){
+                maksVerdi = a[i];
                 ombytting++;
             }
         }
@@ -98,7 +109,75 @@ public class Oblig1 {
     }
 
     // Oppgave 4
+    //https://www.geeksforgeeks.org/sort-even-numbers-ascending-order-sort-odd-numbers-descending-order/
+    public static void delsortering(int[] a){
+        if(a == null){
+            throw new NullPointerException("Listen er null.");
+        }
+        if(a.length == 0){
+            throw new NoSuchElementException("Listen er tom!");
+        }
 
+        for(int i = 0; i < a.length; i++){
+            if(a[i] % 1 != 0){
+                a[i] *= -1;
+            }
+        }
+        Arrays.sort(a);
+        for(int i = 0; i < a.length; i++){
+            if(a[i] % 1 != 0){
+                a[i] *= -1;
+            }
+        }
+
+
+/*        int indeksHoyre = 0;
+        int indeksVenstre = a.length - 1;
+        int oddetallTeller = 0;
+
+        //finner alle oddetallene fra venstre side
+        while(indeksVenstre < indeksHoyre){
+            while(a[indeksVenstre] % 2 != 0){
+                indeksVenstre++;
+                oddetallTeller++;
+            }
+
+            //finner alle partall fra venstre side
+            while(a[indeksHoyre] % 2 == 0 && indeksVenstre < indeksHoyre){
+                indeksHoyre--;
+            }
+
+            if(indeksVenstre < indeksHoyre){
+                int midlertidig = a[indeksVenstre];
+                a[indeksVenstre] = a[indeksHoyre];
+                a[indeksHoyre] = midlertidig;
+            }
+        }
+
+        //Sorterer oddetallene i synkende rekkefølge.
+        sort(a, 0, oddetallTeller, Collections.reverseOrder());
+
+        //Sortrerer partall i stigende rekkefølge.
+        sort(a, oddetallTeller, a.length);*/
+
+
+/*
+        for(int i = 0 ; i < a.length; i++){
+            for(int j = i+1; j < a.length; j++){
+                if(a[j] <= a[i]){
+                    int temp = a[i]; a[i] = a[j]; a[j] = temp;
+                }
+            }
+        }
+        for(int i = 0; i < a.length; i++){
+            if(a[i] / 2 == 0){
+                if(a[i] >= nesteTalliRekken){
+                    nesteTalliRekken = a[i];
+                }
+            }
+        }*/
+        System.out.println(Arrays.toString(a));
+    }
 
     // Oppgave 5
 
@@ -112,8 +191,8 @@ public class Oblig1 {
     // Oppgave 8 - Denne er OK, men må fikse avvik
     public static int[] indekssortering(int[] a) {
         int[] indeksTabell = new int[a.length];//ok
-        int[] sortedArray = Arrays.copyOf(a, a.length);
-        Arrays.sort(sortedArray);       //hjelpetabell som er sortert i stigende rekkefølge
+        int[] sortedArray = copyOf(a, a.length);
+        sort(sortedArray);       //hjelpetabell som er sortert i stigende rekkefølge
 
         if (a.length < 1) {
             return null;
@@ -198,18 +277,23 @@ public class Oblig1 {
     public static void main(String[] args) {
         int[] tomtArray = {};
         int[] array1 = randPerm(10);
-
-
         int[] array9 = {-1, 5, 0, 4, 2, 7, -1, -8, -2, 4};
+        int[] array10 = {2,5,7,8,3,6,8,9,6,8};
+
         System.out.println("Opprinnelig array: " + Arrays.toString(array9));
         System.out.println("Oppgave 9, output: " + Arrays.toString(tredjeMin(array9)));
 
+
         //Oblig1.maks(tomtArray);
-        System.out.println("Dette er Oppgave1 maks();");
+        System.out.println("OPPGAVE 1");
         System.out.println("Det største tallet i listen: "+Oblig1.maks(array9));
 
-        System.out.println("Dette er Oppgave1 ombyttinger();");
-        System.out.println("Det tok " + ombyttinger(array9) + " omflyttinger å flytte det største tallet bakerst.");
+        System.out.println("OPPGAVE 1");
+        System.out.println("Det tok " + ombyttinger(array9) + " ombyttinger å flytte det største tallet bakerst.");
+
+        System.out.println("OPPGAVE 4");
+        Oblig1.delsortering(array10);
+        System.out.println(Arrays.toString(array10));
 
         // int[] array8 = {1, 0, 4, 2, 7, -1};
         // System.out.println("Opprinnelig array: " + Arrays.toString(array8));
