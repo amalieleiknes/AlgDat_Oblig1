@@ -27,7 +27,6 @@ public class Oblig1 {
     }
 
     // Oppgave 1
-
     //hentet hjelp fra: https://stackoverflow.com/questions/34745203/using-a-for-loop-to-manually-sort-an-array-java
     public static int maks(int[] a){
         if(a.length == 0){
@@ -63,9 +62,6 @@ public class Oblig1 {
         }
         return ombytting;
     }
-
-    // Oppgave 2
-
 
     // Oppgave 2 - ikke kjørt testene på denne
     public static int antallUlikeSortert(int[] a){
@@ -118,7 +114,7 @@ public class Oblig1 {
     }
 
     // Oppgave 4
-    //https://www.geeksforgeeks.org/sort-even-numbers-ascending-order-sort-odd-numbers-descending-order/
+    //lest fra: https://www.geeksforgeeks.org/sort-even-numbers-ascending-order-sort-odd-numbers-descending-order/
     public static void delsortering(int[] a){
         if(a == null){
             throw new NullPointerException("Listen er null."); //kaster exception dersom listen er null.
@@ -144,7 +140,6 @@ public class Oblig1 {
             }
         }
     }
-
 
     // Oppgave 5 - ikke kjørt testene på denne
     public static void rotasjon(char[] a){
@@ -176,7 +171,7 @@ public class Oblig1 {
     }
 
     // Oppgave 7
-
+    
 
     // Oppgave 8 - Denne fungerer ikke om det er like tall i tabellen, men skjønner ikke hvorfor???
     public static int[] indekssortering(int[] a) {
