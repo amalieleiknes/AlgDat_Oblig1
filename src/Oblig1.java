@@ -363,10 +363,6 @@ public class Oblig1 {
         Oblig1.delsortering(array10);
         System.out.println(Arrays.toString(array10));
 
-
-    // main-metode for testing, slettes før innlevering
-    public static void main(String[] args) {
-        int[] tomtArray = {};
         int[] likeTallArray = {5, 5, 5, 5, 5, 5};
         int[] minusTallArray = {-1,-2,-3,-1,-7,-1000};
         int[] randomArray = randPerm(10);
