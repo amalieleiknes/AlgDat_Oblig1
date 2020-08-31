@@ -86,6 +86,7 @@ public class Oblig1 {
     // Oppgave 5 - ikke kjørt testene på denne
     public static void rotasjon(char[] a){
         if(a.length == 0){
+            return;
         }
         else{
             char temp = a[a.length-1];
@@ -94,12 +95,22 @@ public class Oblig1 {
             }
             a[0] = temp;
         }
-
     }
 
 
-    // Oppgave 6
-
+    // Oppgave 6 - ikke kjørt testene på denne
+    public static void rotasjon(char[] a, int k){
+        if(k < 0){
+            k += a.length;
+        }
+        for(int i = 0; i < k; i++){
+            char temp = a[a.length-1];
+            for(int j  = a.length-1; j > 0; j--){
+                a[j] = a[j-1];
+            }
+            a[0] = temp;
+        }
+    }
 
     // Oppgave 7
 
@@ -237,11 +248,12 @@ public class Oblig1 {
         /*System.out.println("Opgpave 8: " + antallUlikeUsortert(minusTallArray));*/
 
         //Kjører metoden i oppgave 5:
-        char[] c = {'A','B','C','D','E','G','H','I','J'};
+        char[] c = {'A','B','C','D','E', 'F','G','H','I','J'};
         char[] d = {'A'};
         char[] e = {};
         System.out.println(Arrays.toString(c));
-        rotasjon(c);
+        /*rotasjon(e);*/
+        rotasjon(c, -4);
         System.out.println(Arrays.toString(c));
 
     }
