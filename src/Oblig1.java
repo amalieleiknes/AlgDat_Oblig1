@@ -127,7 +127,7 @@ public class Oblig1 {
             throw new NoSuchElementException("Listen er tom!"); //kaster exception dersom listen er tom.
         }
 
-        //går først gjennom array og finner oddetall. Setter oddetall til et negativt tall, så det
+        //går først gjennom array og finner oddetall. Setter oddetall til negative tall, så de
         //kommer helt til venstre i tabellen.
         for(int i = 0; i < a.length; i++){
             if((a[i] % 2) != 0){
@@ -143,57 +143,7 @@ public class Oblig1 {
                 a[i] *= -1;
             }
         }
-
-
-/*        int indeksHoyre = 0;
-        int indeksVenstre = a.length - 1;
-        int oddetallTeller = 0;
-
-        //finner alle oddetallene fra venstre side
-        while(indeksVenstre < indeksHoyre){
-            while(a[indeksVenstre] % 2 != 0){
-                indeksVenstre++;
-                oddetallTeller++;
-            }
-
-            //finner alle partall fra venstre side
-            while(a[indeksHoyre] % 2 == 0 && indeksVenstre < indeksHoyre){
-                indeksHoyre--;
-            }
-
-            if(indeksVenstre < indeksHoyre){
-                int midlertidig = a[indeksVenstre];
-                a[indeksVenstre] = a[indeksHoyre];
-                a[indeksHoyre] = midlertidig;
-            }
-        }
-
-        //Sorterer oddetallene i synkende rekkefølge.
-        sort(a, 0, oddetallTeller, Collections.reverseOrder());
-
-        //Sortrerer partall i stigende rekkefølge.
-        sort(a, oddetallTeller, a.length);*/
-
-
-/*
-        for(int i = 0 ; i < a.length; i++){
-            for(int j = i+1; j < a.length; j++){
-                if(a[j] <= a[i]){
-                    int temp = a[i]; a[i] = a[j]; a[j] = temp;
-                }
-            }
-        }
-        for(int i = 0; i < a.length; i++){
-            if(a[i] / 2 == 0){
-                if(a[i] >= nesteTalliRekken){
-                    nesteTalliRekken = a[i];
-                }
-            }
-        }*/
-        System.out.println(Arrays.toString(a));
     }
-
-    // Oppgave 4
 
 
     // Oppgave 5 - ikke kjørt testene på denne
@@ -377,6 +327,7 @@ public class Oblig1 {
         /*System.out.println("Opgpave 8: " + antallUlikeUsortert(minusTallArray));*/
 
         //Kjører metoden i oppgave 5:
+        System.out.println("OPPGAVE 5");
         char[] c = {'A','B','C','D','E', 'F','G','H','I','J'};
         char[] d = {'A'};
         char[] e = {};
