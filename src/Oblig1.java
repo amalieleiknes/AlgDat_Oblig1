@@ -48,7 +48,7 @@ public class Oblig1 {
         return maksVerdi;
     }
 
-    //Oppgave 1
+    //Oppgave 1 https://www.cs.hioa.no/~ulfu/appolonius/kap1/2/kap12.html#kode.1.2.4.a - 1.2.6
     //metode som teller hvor mange ganger en ombytting skjer - skal regne ut gjennomsnittet
     public static int ombyttinger(int[] a){
         int ombytting = 0;
@@ -130,6 +130,7 @@ public class Oblig1 {
                 a[i] *= -1;
             }
         }
+        System.out.println("Usortert liste: " + Arrays.toString(a));
         //sorterer array i stigende rekkefølge.
         Arrays.sort(a);
 
@@ -162,8 +163,8 @@ public class Oblig1 {
             k += a.length;
         }
         for(int i = 0; i < k; i++){
-            char temp = a[a.length-1];
-            for(int j  = a.length-1; j > 0; j--){
+            char temp = a[a.length - 1];
+            for(int j  = a.length - 1; j > 0; j--){
                 a[j] = a[j-1];
             }
             a[0] = temp;
@@ -171,7 +172,31 @@ public class Oblig1 {
     }
 
     // Oppgave 7
-    
+    public static String flett(String s, String t){
+        int sLength = s.length();
+        int tLength = t.length();
+
+        String result = "";
+
+
+        int sTeller = 0;
+        int tTeller = 0;
+        int zTeller = 0;
+
+        while (sTeller < sLength && tTeller < tLength){
+
+            String bokstaven = s.substring(sTeller, sTeller+1);
+
+        }
+
+        List<String> listOfStrings = new ArrayList<>();
+
+        System.out.println("sLength" + sLength);
+        System.out.println("tLength" + tLength);
+        return "";
+
+
+    }
 
     // Oppgave 8 - Denne fungerer ikke om det er like tall i tabellen, men skjønner ikke hvorfor???
     public static int[] indekssortering(int[] a) {
@@ -310,8 +335,8 @@ public class Oblig1 {
         System.out.println("Det tok " + ombyttinger(array9) + " ombyttinger å flytte det største tallet bakerst.");
 
         System.out.println("OPPGAVE 4");
-        Oblig1.delsortering(array10);
-        System.out.println(Arrays.toString(array10));
+        Oblig1.delsortering(array9);
+        System.out.println("Sortert liste: " + Arrays.toString(array9));
 
         int[] likeTallArray = {5, 5, 5, 5, 5, 5};
         int[] minusTallArray = {-1,-2,-3,-1,-7,-1000};
@@ -330,6 +355,9 @@ public class Oblig1 {
         /*rotasjon(e);*/
         rotasjon(c, -4);
         System.out.println(Arrays.toString(c));
+
+        System.out.println("OPPGAVE 7");
+        System.out.println(flett("HEIHEIHALLO", "MIPMIP"));
 
     }
 }
