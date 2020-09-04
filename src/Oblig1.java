@@ -116,35 +116,70 @@ public class Oblig1 {
         }
         return antall;
     }
-
-    // Oppgave 4
+    // Oppgave 4,
     //https://www.geeksforgeeks.org/sort-even-numbers-ascending-order-sort-odd-numbers-descending-order/
-    public static void delsortering(int[] a){
-        if(a == null){
+    public static void delsortering(int[] a) {
+        if (a == null) {
             throw new NullPointerException("Listen er null."); //kaster exception dersom listen er null.
         }
-        if(a.length == 0){
+        if (a.length == 0) {
             throw new NoSuchElementException("Listen er tom!"); //kaster exception dersom listen er tom.
         }
 
-        //går først gjennom array og finner oddetall. Setter oddetall til negative tall, så de
-        //kommer helt til venstre i tabellen.
-        for(int i = 0; i < a.length; i++){
-            if((a[i] % 2) != 0){
-                a[i] *= -1;
-            }
-        }
-        //sorterer array i stigende rekkefølge.
-        Arrays.sort(a);
+        int venstre = 0;           //setter en grense fra venstre
+        int hoyre = a.length - 1;  //grense til høyre
 
-        //går gjennom array på nytt og gjør oddetallene til positive tall igjen.
-        for(int i = 0; i < a.length; i++){
-            if((a[i] % 2) != 0){
-                a[i] *= -1;
+        while (venstre < hoyre) {
+            while (a[venstre] % 2 != 0 && venstre < hoyre) {  //dersom venstre er mindre enn hoyre og det er et oddetall, flytter vi kun telleren
+                venstre++;
+            }
+            while (a[hoyre] % 2 == 0 && venstre < hoyre) {  //dersom venstre er mindre enn høyre og et partall, flytt telleren
+                hoyre--;
+            }
+            if (venstre < hoyre) {  //går inn i if-statement når while-løkkene har truffet et partall og oddetall
+                int midlertidig = a[venstre];   //gjøre plassen til venstre åpen
+                a[venstre] = a[hoyre];          //setter inn verdi fra høyre til venstre
+                a[hoyre] = midlertidig;         //setter inn verdien som sto til venstre på høyre plass
+                venstre++;
+                hoyre--;
             }
         }
+
+        int oddetall = 0;
+        for (int number : a) {
+            if (number % 2 != 0) {
+                oddetall++;
+            }
+        }
+
+        //sortere oddetall
+        int temp;
+        for (int i = 0; i < oddetall; i++) {
+            for (int k = 0; k < oddetall - 1; k++) {
+                if (a[k] > a[k + 1]) {
+                    temp = a[k];
+                    a[k] = a[k + 1];
+                    a[k + 1] = temp;
+                }
+            }
+        }
+
+        int partall = a.length - oddetall;
+
+        //sortere partall
+        for (int i = partall; i < a.length; i++) {
+
+            for (int j = partall; j < a.length - 1; j++) {
+                if (a[j] > a[j + 1]) {
+                    int midlertidig = a[j];
+                    a[j] = a[j + 1];
+                    a[j + 1] = midlertidig;
+                }
+            }
+        }
+
+
     }
-
 
     // Oppgave 5 - ikke kjørt testene på denne
     public static void rotasjon(char[] a){
@@ -315,8 +350,11 @@ public class Oblig1 {
         System.out.println("Det tok " + ombyttinger(array9) + " ombyttinger å flytte det største tallet bakerst.");
 
         System.out.println("OPPGAVE 4");
-        Oblig1.delsortering(array10);
-        System.out.println(Arrays.toString(array10));
+        int[] oppg4List = randPerm(10);
+        System.out.println("Usortert liste: " + Arrays.toString(oppg4List));
+        Oblig1.delsortering(oppg4List);
+        System.out.println("Sortert etter oddetall og partall " + Arrays.toString(oppg4List));
+
 
         int[] likeTallArray = {5, 5, 5, 5, 5, 5};
         int[] minusTallArray = {-1,-2,-3,-1,-7,-1000};
