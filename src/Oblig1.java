@@ -145,6 +145,7 @@ public class Oblig1 {
             }
         }
 
+        //går gjennom listen med for-each for å finne antall oddetall
         int oddetall = 0;
         for (int number : a) {
             if (number % 2 != 0) {
