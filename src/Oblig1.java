@@ -33,26 +33,29 @@ public class Oblig1 {
         }
 
         System.out.println("Liste blandet: " + Arrays.toString(a));
-        for (int i = 0; i < a.length-1; i++) {
-            if (a[i] >= a[i+1]){
+        for (int i = 0; i < a.length - 1; i++) {
+            if (a[i] >= a[i + 1]) {
                 int midlertidig = a[i];
-                a[i] = a[i+1];
-                a[i+1] = midlertidig;
+                a[i] = a[i + 1];
+                a[i + 1] = midlertidig;
             }
         }
         System.out.println("Liste med største bakerst: " + Arrays.toString(a));
-        return a[a.length-1];
+        return a[a.length - 1];
     }
 
     //Oppgave 1 https://www.cs.hioa.no/~ulfu/appolonius/kap1/2/kap12.html#kode.1.2.4.a - 1.2.6
     //metode som teller hvor mange ganger en ombytting skjer - skal regne ut gjennomsnittet
     public static int ombyttinger(int[] a) {
+        if(a.length < 2){
+            throw new NoSuchElementException("Listen må ha to verdier!");
+        }
         int ombytting = 0;
-        for (int i = 0; i < a.length-1; i++) {
-            if(a[i] >= a[i+1]){
+        for (int i = 0; i < a.length - 1; i++) {
+            if (a[i] >= a[i + 1]) {
                 int midlertidig = a[i];
-                a[i] = a[i+1];
-                a[i+1] = midlertidig;
+                a[i] = a[i + 1];
+                a[i + 1] = midlertidig;
                 ombytting++;
             }
         }
@@ -60,23 +63,23 @@ public class Oblig1 {
     }
 
     // Oppgave 2 - ikke kjørt testene på denne
-    public static int antallUlikeSortert(int[] a){
+    public static int antallUlikeSortert(int[] a) {
         boolean sortert = true;
-        for(int i = 0; i < a.length; i++){
-            if(a[i] < a[i-1]){
+        for (int i = 0; i < a.length; i++) {
+            if (a[i] < a[i - 1]) {
                 sortert = false;
             }
         }
-        if(!sortert){
+        if (!sortert) {
             throw new IllegalStateException("Tabellen er ikke sortert stigende!");
         }
 
         int antallUlike = 1;
-        if(a.length == 0){
+        if (a.length == 0) {
             antallUlike = 0;
         }
-        for(int i = 1; i < a.length; i++){
-            if(a[i] != a[i-1]){
+        for (int i = 1; i < a.length; i++) {
+            if (a[i] != a[i - 1]) {
                 antallUlike++;
             }
         }
@@ -84,25 +87,25 @@ public class Oblig1 {
     }
 
     //Oppgave 3 - Denne er ok nå, hehe
-    public static int antallUlikeUsortert(int[] a){
+    public static int antallUlikeUsortert(int[] a) {
         int antall = 1;
         int nyttTall;
         boolean unik = false;
-        if(a.length<1){
+        if (a.length < 1) {
             return 0;
         }
-        for(int i = 1; i<a.length; i++){        //går gjennom arrayet og sjekker om tallet har vært tidl
+        for (int i = 1; i < a.length; i++) {        //går gjennom arrayet og sjekker om tallet har vært tidl
             nyttTall = a[i];                    //variabelen som sjekkes om har vært tidligere
-            for(int j = i+1; j<a.length; j++) {
+            for (int j = i + 1; j < a.length; j++) {
                 int telteTall = a[j];
-                if(nyttTall != telteTall && nyttTall!= a[0]){
-                    unik=true;
+                if (nyttTall != telteTall && nyttTall != a[0]) {
+                    unik = true;
                 } else {
-                    unik=false;
+                    unik = false;
                     break;
                 }
             }
-            if(unik){
+            if (unik) {
                 antall++;
             }
         }
@@ -111,8 +114,8 @@ public class Oblig1 {
 
     // Oppgave 4
     //lest fra: https://www.geeksforgeeks.org/sort-even-numbers-ascending-order-sort-odd-numbers-descending-order/
-    public static void delsortering(int[] a){
-        if(a == null){
+    public static void delsortering(int[] a) {
+        if (a == null) {
             throw new NullPointerException("Listen er null."); //kaster exception dersom listen er null.
         }
         if (a.length == 0) {
@@ -175,14 +178,13 @@ public class Oblig1 {
 
 
     // Oppgave 5 - ikke kjørt testene på denne
-    public static void rotasjon(char[] a){
-        if(a.length == 0){
+    public static void rotasjon(char[] a) {
+        if (a.length == 0) {
             return;
-        }
-        else{
-            char temp = a[a.length-1];
-            for(int i  = a.length-1; i > 0; i--){
-                a[i] = a[i-1];
+        } else {
+            char temp = a[a.length - 1];
+            for (int i = a.length - 1; i > 0; i--) {
+                a[i] = a[i - 1];
             }
             a[0] = temp;
         }
