@@ -190,45 +190,39 @@ public class Oblig1 {
 
 
     // Oppgave 6 - ikke kjørt testene på denne
-    public static void rotasjon(char[] a, int k){
-        if(k < 0){
+    public static void rotasjon(char[] a, int k) {
+        if (k < 0) {
             k += a.length;
         }
-        for(int i = 0; i < k; i++){
+        for (int i = 0; i < k; i++) {
             char temp = a[a.length - 1];
-            for(int j  = a.length - 1; j > 0; j--){
-                a[j] = a[j-1];
+            for (int j = a.length - 1; j > 0; j--) {
+                a[j] = a[j - 1];
             }
             a[0] = temp;
         }
     }
 
-    // Oppgave 7
-    public static String flett(String s, String t){
-        int sLength = s.length();
-        int tLength = t.length();
+    // Oppgave 7a)
+    //Hentet hjelp fra --> https://www.cs.hioa.no/~ulfu/appolonius/kap1/3/fasit1311.html
+    public static String flett(String s, String t) {
+        int kortesteString = Math.min(s.length(), t.length()); //finner ut hvilken String som er den korteste
+        StringBuilder fullstendigSetning = new StringBuilder(); //oppretter en StringBuilder som skal returneres
 
-        String result = "";
+        for(int i = 0; i < kortesteString; i++){
+            fullstendigSetning.append(s.charAt(i)).append(t.charAt(i));   //fullstendigSetning "appender" først fra s i indeks
+        }                                                                 //i, deretter fra String t i indeks i.
 
+        //etter å ha lagt til annen hver bokstav i for-løkken, legges det til de siste bokstavene ved hjelp av metoden "substring".
+        //den legger til bokstavene *fra* indeks "kortesteString" og ut.
+        fullstendigSetning.append(s.substring(kortesteString)).append(t.substring(kortesteString));
 
-        int sTeller = 0;
-        int tTeller = 0;
-        int zTeller = 0;
-
-        while (sTeller < sLength && tTeller < tLength){
-
-            String bokstaven = s.substring(sTeller, sTeller+1);
-
-        }
-
-        List<String> listOfStrings = new ArrayList<>();
-
-        System.out.println("sLength" + sLength);
-        System.out.println("tLength" + tLength);
-        return "";
-
-
+        return fullstendigSetning.toString();
     }
+
+    //Oppgave 7b)
+    
+
 
     // Oppgave 8 - Denne fungerer ikke om det er like tall i tabellen, men skjønner ikke hvorfor???
     public static int[] indekssortering(int[] a) {
@@ -397,7 +391,7 @@ public class Oblig1 {
         System.out.println(Arrays.toString(c));
 
         System.out.println("OPPGAVE 7");
-        System.out.println(flett("HEIHEIHALLO", "MIPMIP"));
+        System.out.println(flett("HEI", "H"));
 
     }
 }
