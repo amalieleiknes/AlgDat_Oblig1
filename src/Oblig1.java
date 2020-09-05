@@ -5,14 +5,13 @@ import static java.util.Arrays.*;
 public class Oblig1 {
 
     // Metoder som generer testverdier til int[] a. Kilde: Kompendie til "appolonius", url. "https://www.cs.hioa.no/~ulfu/appolonius/kap1/1/kap11.html#1.1.2", Programkode 1.1.8 d og e.
-    public static void bytt(int[] a, int i, int j)
-    {
+    public static void bytt(int[] a, int i, int j) {
         int temp = a[i];
         a[i] = a[j];
         a[j] = temp;
     }
 
-    public static int[] randPerm(int n){
+    public static int[] randPerm(int n) {
         Random r = new Random();
 
         int[] a = new int[n];
@@ -20,8 +19,8 @@ public class Oblig1 {
 
         for (int k = n - 1; k > 0; k--)         // løkke som går n - 1 ganger
         {
-            int i = r.nextInt(k+1);       // en tilfeldig tall fra 0 til k
-            bytt(a,k,i);                        // bytter om
+            int i = r.nextInt(k + 1);       // en tilfeldig tall fra 0 til k
+            bytt(a, k, i);                        // bytter om
         }
         return a;                               // permutasjonen returneres
     }
