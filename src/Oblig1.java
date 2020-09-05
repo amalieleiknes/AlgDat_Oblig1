@@ -29,44 +29,41 @@ public class Oblig1 {
     // Oppgave 1
 
     //hentet hjelp fra: https://stackoverflow.com/questions/34745203/using-a-for-loop-to-manually-sort-an-array-java
-    public static int maks(int[] a){
-        if(a.length == 0){
+    public static int maks(int[] a) {
+        if (a.length == 0) {
             throw new NoSuchElementException("Listen er tom!");
         }
-        int maksVerdi = a[0];
-        System.out.println("Usortert liste: " + Arrays.toString(a));
-        for(int i = 0; i < a.length; i++){
-            for(int j = i+1; j < a.length; j++){
-                if(a[i] > a[j]){
-                    int midlertidig = a[i];  //setter den største verdien "til side"
-                    a[i] = a[j];             //tilegner plassen med tallet som er minst
-                    a[j] = midlertidig;      //setter inn igjen den største verdien en plass frem
-                    maksVerdi = a[j];
-                }
+
+        System.out.println("Liste blandet: " + Arrays.toString(a));
+        for (int i = 0; i < a.length-1; i++) {
+            if (a[i] >= a[i+1]){
+                int midlertidig = a[i];
+                a[i] = a[i+1];
+                a[i+1] = midlertidig;
             }
         }
-        System.out.println("Sortert liste: " + Arrays.toString(a));
-        return maksVerdi;
+        System.out.println("Liste med største bakerst: " + Arrays.toString(a));
+        return a[a.length-1];
     }
 
     //Oppgave 1
     //metode som teller hvor mange ganger en ombytting skjer - skal regne ut gjennomsnittet
-    public static int ombyttinger(int[] a){
+    public static int ombyttinger(int[] a) {
         int ombytting = 0;
         int maksVerdi = a[0];
-        for(int i = 1; i < a.length; i++){
-            int nesteTalliRekken = a[i];  //for å unngå unødvendig mange operasjoner
-            if(maksVerdi <= nesteTalliRekken){
-                maksVerdi = a[i];
-                ombytting++;
+        for (int i = 0; i < a.length; i++) {
+            for (int j = 1; j < a.length-1; j++) {
+                int nesteTalliRekken = a[j];  //for å unngå unødvendig mange operasjoner
+                if (maksVerdi <= nesteTalliRekken) {
+                    int midlertidig = a[maksVerdi];
+                    a[maksVerdi] = a[nesteTalliRekken];
+                    a[nesteTalliRekken] = a[midlertidig];
+                    ombytting++;
+                }
             }
         }
         return ombytting;
     }
-
-    // Oppgave 2
-
-
     // Oppgave 2 - ikke kjørt testene på denne
     public static int antallUlikeSortert(int[] a){
         boolean sortert = true;
@@ -345,10 +342,15 @@ public class Oblig1 {
 
         //Oblig1.maks(tomtArray);
         System.out.println("OPPGAVE 1");
-        System.out.println("Det største tallet i listen: "+Oblig1.maks(array9));
+        int[] listeOppgave1 = randPerm(10);
+        System.out.println("Det største tallet i listen: "+Oblig1.maks(listeOppgave1));
 
         System.out.println("OPPGAVE 1");
-        System.out.println("Det tok " + ombyttinger(array9) + " ombyttinger å flytte det største tallet bakerst.");
+        int[] listeOppgave1_1 = randPerm(10);
+        System.out.println(Arrays.toString(listeOppgave1_1));
+        System.out.println("Det tok " + ombyttinger(listeOppgave1_1) + " ombyttinger å flytte det største tallet bakerst.");
+        System.out.println(Arrays.toString(listeOppgave1_1));
+        System.out.println();
 
         System.out.println("OPPGAVE 4");
         int[] oppg4List = randPerm(10);
