@@ -5,14 +5,13 @@ import static java.util.Arrays.*;
 public class Oblig1 {
 
     // Metoder som generer testverdier til int[] a. Kilde: Kompendie til "appolonius", url. "https://www.cs.hioa.no/~ulfu/appolonius/kap1/1/kap11.html#1.1.2", Programkode 1.1.8 d og e.
-    public static void bytt(int[] a, int i, int j)
-    {
+    public static void bytt(int[] a, int i, int j) {
         int temp = a[i];
         a[i] = a[j];
         a[j] = temp;
     }
 
-    public static int[] randPerm(int n){
+    public static int[] randPerm(int n) {
         Random r = new Random();
 
         int[] a = new int[n];
@@ -20,43 +19,40 @@ public class Oblig1 {
 
         for (int k = n - 1; k > 0; k--)         // løkke som går n - 1 ganger
         {
-            int i = r.nextInt(k+1);       // en tilfeldig tall fra 0 til k
-            bytt(a,k,i);                        // bytter om
+            int i = r.nextInt(k + 1);       // en tilfeldig tall fra 0 til k
+            bytt(a, k, i);                        // bytter om
         }
         return a;                               // permutasjonen returneres
     }
 
     // Oppgave 1
     //hentet hjelp fra: https://stackoverflow.com/questions/34745203/using-a-for-loop-to-manually-sort-an-array-java
-    public static int maks(int[] a){
-        if(a.length == 0){
+    public static int maks(int[] a) {
+        if (a.length == 0) {
             throw new NoSuchElementException("Listen er tom!");
         }
-        int maksVerdi = a[0];
-        System.out.println("Usortert liste: " + Arrays.toString(a));
-        for(int i = 0; i < a.length; i++){
-            for(int j = i+1; j < a.length; j++){
-                if(a[i] > a[j]){
-                    int midlertidig = a[i];  //setter den største verdien "til side"
-                    a[i] = a[j];             //tilegner plassen med tallet som er minst
-                    a[j] = midlertidig;      //setter inn igjen den største verdien en plass frem
-                    maksVerdi = a[j];
-                }
+
+        System.out.println("Liste blandet: " + Arrays.toString(a));
+        for (int i = 0; i < a.length-1; i++) {
+            if (a[i] >= a[i+1]){
+                int midlertidig = a[i];
+                a[i] = a[i+1];
+                a[i+1] = midlertidig;
             }
         }
-        System.out.println("Sortert liste: " + Arrays.toString(a));
-        return maksVerdi;
+        System.out.println("Liste med største bakerst: " + Arrays.toString(a));
+        return a[a.length-1];
     }
 
     //Oppgave 1 https://www.cs.hioa.no/~ulfu/appolonius/kap1/2/kap12.html#kode.1.2.4.a - 1.2.6
     //metode som teller hvor mange ganger en ombytting skjer - skal regne ut gjennomsnittet
-    public static int ombyttinger(int[] a){
+    public static int ombyttinger(int[] a) {
         int ombytting = 0;
-        int maksVerdi = a[0];
-        for(int i = 1; i < a.length; i++){
-            int nesteTalliRekken = a[i];  //for å unngå unødvendig mange operasjoner
-            if(maksVerdi <= nesteTalliRekken){
-                maksVerdi = a[i];
+        for (int i = 0; i < a.length-1; i++) {
+            if(a[i] >= a[i+1]){
+                int midlertidig = a[i];
+                a[i] = a[i+1];
+                a[i+1] = midlertidig;
                 ombytting++;
             }
         }
@@ -142,6 +138,7 @@ public class Oblig1 {
             }
         }
 
+        //går gjennom listen med for-each for å finne antall oddetall
         int oddetall = 0;
         for (int number : a) {
             if (number % 2 != 0) {
@@ -174,9 +171,8 @@ public class Oblig1 {
                 }
             }
         }
-
-
     }
+
 
     // Oppgave 5 - ikke kjørt testene på denne
     public static void rotasjon(char[] a){
@@ -365,10 +361,15 @@ public class Oblig1 {
 
         //Oblig1.maks(tomtArray);
         System.out.println("OPPGAVE 1");
-        System.out.println("Det største tallet i listen: "+Oblig1.maks(array9));
+        int[] listeOppgave1 = randPerm(10);
+        System.out.println("Det største tallet i listen: "+Oblig1.maks(listeOppgave1));
 
         System.out.println("OPPGAVE 1");
-        System.out.println("Det tok " + ombyttinger(array9) + " ombyttinger å flytte det største tallet bakerst.");
+        int[] listeOppgave1_1 = randPerm(10);
+        System.out.println(Arrays.toString(listeOppgave1_1));
+        System.out.println("Det tok " + ombyttinger(listeOppgave1_1) + " ombyttinger å flytte det største tallet bakerst.");
+        System.out.println(Arrays.toString(listeOppgave1_1));
+        System.out.println();
 
         System.out.println("OPPGAVE 4");
         int[] oppg4List = randPerm(10);
