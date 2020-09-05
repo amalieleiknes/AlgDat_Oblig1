@@ -49,20 +49,17 @@ public class Oblig1 {
     //metode som teller hvor mange ganger en ombytting skjer - skal regne ut gjennomsnittet
     public static int ombyttinger(int[] a) {
         int ombytting = 0;
-        int maksVerdi = a[0];
-        for (int i = 0; i < a.length; i++) {
-            for (int j = 1; j < a.length-1; j++) {
-                int nesteTalliRekken = a[j];  //for å unngå unødvendig mange operasjoner
-                if (maksVerdi <= nesteTalliRekken) {
-                    int midlertidig = a[maksVerdi];
-                    a[maksVerdi] = a[nesteTalliRekken];
-                    a[nesteTalliRekken] = a[midlertidig];
-                    ombytting++;
-                }
+        for (int i = 0; i < a.length-1; i++) {
+            if(a[i] >= a[i+1]){
+                int midlertidig = a[i];
+                a[i] = a[i+1];
+                a[i+1] = midlertidig;
+                ombytting++;
             }
         }
         return ombytting;
     }
+
     // Oppgave 2 - ikke kjørt testene på denne
     public static int antallUlikeSortert(int[] a){
         boolean sortert = true;
@@ -112,7 +109,7 @@ public class Oblig1 {
         }
         return antall;
     }
-    // Oppgave 4,
+    // Oppgave 4
     //https://www.geeksforgeeks.org/sort-even-numbers-ascending-order-sort-odd-numbers-descending-order/
     public static void delsortering(int[] a) {
         if (a == null) {
@@ -174,9 +171,8 @@ public class Oblig1 {
                 }
             }
         }
-
-
     }
+
 
     // Oppgave 5 - ikke kjørt testene på denne
     public static void rotasjon(char[] a){
