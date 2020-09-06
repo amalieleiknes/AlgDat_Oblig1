@@ -395,5 +395,10 @@ public class Oblig1 {
         System.out.println("OPPGAVE 7");
         System.out.println(flett("HEI", "H"));
 
+        System.out.println("OPPGAVE 7 B");
+        System.out.println(flett("AM ","L","GEDS","ORATKRR","","R TRTE","IO","TGAUU"));
+
+        //
+
     }
 }
