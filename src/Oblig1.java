@@ -25,7 +25,7 @@ public class Oblig1 {
         return a;                               // permutasjonen returneres
     }
 
-    // Oppgave 1
+    // Oppgave 1 TODO: FERDIG
     //hentet hjelp fra: https://stackoverflow.com/questions/34745203/using-a-for-loop-to-manually-sort-an-array-java
     public static int maks(int[] a) {
         if (a.length == 0) {
@@ -44,7 +44,8 @@ public class Oblig1 {
         return a[a.length - 1];
     }
 
-    //Oppgave 1 https://www.cs.hioa.no/~ulfu/appolonius/kap1/2/kap12.html#kode.1.2.4.a - 1.2.6
+    //Oppgave 1 TODO: Nesten ferdig
+    // https://www.cs.hioa.no/~ulfu/appolonius/kap1/2/kap12.html#kode.1.2.4.a - 1.2.6
     //metode som teller hvor mange ganger en ombytting skjer - skal regne ut gjennomsnittet
     public static int ombyttinger(int[] a) {
         if(a.length < 2){
@@ -112,7 +113,7 @@ public class Oblig1 {
         return antall;
     }
 
-    // Oppgave 4
+    // Oppgave 4 TODO: FERDIG
     //lest fra: https://www.geeksforgeeks.org/sort-even-numbers-ascending-order-sort-odd-numbers-descending-order/
     public static void delsortering(int[] a) {
         if (a == null) {
@@ -205,7 +206,7 @@ public class Oblig1 {
         }
     }
 
-    // Oppgave 7a)
+    // Oppgave 7a) TODO: FERDIG
     //Hentet hjelp fra --> https://www.cs.hioa.no/~ulfu/appolonius/kap1/3/fasit1311.html
     public static String flett(String s, String t) {
         int kortesteString = Math.min(s.length(), t.length()); //finner ut hvilken String som er den korteste
@@ -222,22 +223,17 @@ public class Oblig1 {
         return fullstendigSetning.toString();
     }
 
-    //Oppgave 7b)
+    //Oppgave 7b) TODO: FERDIG
     public static String flett(String... s) {
         StringBuilder stringBuilder = new StringBuilder();
         System.out.println(Arrays.toString(s));
+        for (int x = 0; x < s.length; x++) {                //ytre - x blir en teller for indeksen til bokstavene i hvert ord.
+            for (int y = 0; y < s.length; y++) {            //indre - y blir en teller for hvert ord i listen s.
+                if (s[y] != null && s[y].length() != 0 || s[x] != null) {  //sjekker at ikke bokstaven i indeks[x]
+                    if (s[y].length() > x) {                                //ikke er null, eller lengde lik 0.
+                        char bokstaven = s[y].charAt(x);                    //sjekker også at ordet s[y] ikke er null
+                        stringBuilder.append(bokstaven);                    //eller lengde lik 0.
 
-        for (int x = 0; x < s.length; x++) {//ytre
-            if (s[x].length() > 0) {
-                String detteErOrdet = s[x].toString();
-
-                for (int y = 0; y < s.length; y++) {     //indre
-                    if (s[y] != null && s[y].length() != 0 || s[x] != null) {  //sjekker at ikke bokstaven i indeks[x]
-                        if (s[y].length() > x) {                                //ikke er null, eller lengde lik 0.
-                            char bokstaven = s[y].charAt(x);                    //sjekker også at ordet s[x] ikke er null
-                            stringBuilder.append(bokstaven);
-
-                        }
                     }
                 }
             }
