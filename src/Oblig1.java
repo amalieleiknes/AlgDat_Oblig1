@@ -225,21 +225,22 @@ public class Oblig1 {
     //Oppgave 7b)
     public static String flett(String... s) {
         StringBuilder stringBuilder = new StringBuilder();
-
-        //Rekursiv metode? 
         System.out.println(Arrays.toString(s));
-        int teller = 0;
-        int antallElementeriStringListen = s.length;
+
         for (int x = 0; x < s.length; x++) {//ytre
             if (s[x].length() > 0) {
                 String detteErOrdet = s[x].toString();
-                for (int y = teller; y == teller; y++) {     //indre
-                    char bokstaven = s[x].charAt(y);
-                    stringBuilder.append(bokstaven);
-                    //stringBuilder.append(s[x].charAt(y));
+
+                for (int y = 0; y < s.length; y++) {     //indre
+                    if (s[y] != null && s[y].length() != 0 || s[x] != null) {  //sjekker at ikke bokstaven i indeks[x]
+                        if (s[y].length() > x) {                                //ikke er null, eller lengde lik 0.
+                            char bokstaven = s[y].charAt(x);                    //sjekker også at ordet s[x] ikke er null
+                            stringBuilder.append(bokstaven);
+
+                        }
+                    }
                 }
             }
-
         }
         return stringBuilder.toString();
     }
