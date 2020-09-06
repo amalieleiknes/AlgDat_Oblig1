@@ -212,8 +212,8 @@ public class Oblig1 {
         StringBuilder fullstendigSetning = new StringBuilder(); //oppretter en StringBuilder som skal returneres
 
         for(int i = 0; i < kortesteString; i++){
-            fullstendigSetning.append(s.charAt(i)).append(t.charAt(i));   //fullstendigSetning "appender" først fra s i indeks
-        }                                                                 //i, deretter fra String t i indeks i.
+            fullstendigSetning.append(s.charAt(i)).append(t.charAt(i));   //fullstendigSetning "appender" først fra s i
+        }                                                                 //indeks (i), deretter fra String t i indeks(i).
 
         //etter å ha lagt til annen hver bokstav i for-løkken, legges det til de siste bokstavene ved hjelp av metoden "substring".
         //den legger til bokstavene *fra* indeks "kortesteString" og ut.
@@ -223,7 +223,26 @@ public class Oblig1 {
     }
 
     //Oppgave 7b)
-    
+    public static String flett(String... s) {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        //Rekursiv metode? 
+        System.out.println(Arrays.toString(s));
+        int teller = 0;
+        int antallElementeriStringListen = s.length;
+        for (int x = 0; x < s.length; x++) {//ytre
+            if (s[x].length() > 0) {
+                String detteErOrdet = s[x].toString();
+                for (int y = teller; y == teller; y++) {     //indre
+                    char bokstaven = s[x].charAt(y);
+                    stringBuilder.append(bokstaven);
+                    //stringBuilder.append(s[x].charAt(y));
+                }
+            }
+
+        }
+        return stringBuilder.toString();
+    }
 
 
     // Oppgave 8 - Denne fungerer ikke om det er like tall i tabellen, men skjønner ikke hvorfor???
@@ -392,8 +411,11 @@ public class Oblig1 {
         rotasjon(c, -4);
         System.out.println(Arrays.toString(c));
 
-        System.out.println("OPPGAVE 7");
+        System.out.println("OPPGAVE 7 A");
         System.out.println(flett("HEI", "H"));
+
+        System.out.println("OPPGAVE 7 B");
+        System.out.println(flett("AM ","L","GEDS","ORATKRR","","R TRTE","IO","TGAUU"));
 
     }
 }
