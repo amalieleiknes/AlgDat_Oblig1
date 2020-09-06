@@ -340,26 +340,36 @@ public class Oblig1 {
         }
     }
 
-    // Oppgave 10
+    // Oppgave 1
     public static boolean inneholdt(String a, String b){
-        boolean inneholder = false;
-
-        if(b.contentEquals(a) || a.isEmpty()){
-            inneholder = true;
-        }
-        else {
-
-
-            //hvis bokstavene i A er i B returneres true. ellers false.
-
-
-            // gjøre om bokstavene til et heltall
-
-            int A = 1; // er det dette han mener?
+        if(a.length() == 0 || a.isBlank()){             //for å unngå å gå inn i metoden
+            return true;
         }
 
-        return inneholder;
+        int[] tallRegisterA = new int[256];             //oppretter to heltallarrays til å legge til antall
+        int[] tallRegisterB = new int[256];             //ASCII-verdier i.
+
+        for(int i = 0; i < a.length(); i++){            //første for-løkke kjører gjennom String a, gjør om
+            int asciiVerdi = a.toUpperCase().charAt(i); //alle bokstavene til store bokstaver og finner ASCII-verdien
+            tallRegisterA[asciiVerdi]++;                //til bokstaven i [i]. Deretter legges det til
+        }                                               //+1 på indeksen til ASCII-verdien i tallRegisterA.
+
+        for(int j = 0; j < b.length(); j++){                //Det samme skjer i for-løkken, lik som for-løkken over.
+            int asciiVerdi = b.toUpperCase().charAt(j);
+            tallRegisterB[asciiVerdi]++;
+        }
+
+        for(int i = 0; i < tallRegisterA.length; i++){      //går gjennom tallRegisterA
+            if( (tallRegisterA[i] > tallRegisterB[i]) ){    //dersom antallet er større i tallRegisterA[i], enn
+                return false;                               //i tallRegisterB[i], inngår ikke alle bokstavene fra tallRegisterA
+            }                                               //i tallRegisterB og vi går ut av for-løkken
+        }
+        return true;
     }
+
+
+
+
     // main-metode for testing, slettes før innlevering
     public static void main(String[] args) {
         int[] tomtArray = {};
@@ -413,6 +423,13 @@ public class Oblig1 {
 
         System.out.println("OPPGAVE 7 B");
         System.out.println(flett("AM ","L","GEDS","ORATKRR","","R TRTE","IO","TGAUU"));
+
+        System.out.println("OPPGAVE 10");
+        System.out.println(inneholdt("", "test"));
+        System.out.println(inneholdt("test", "testeseh"));
+        System.out.println(inneholdt("hallo", "hei"));
+        System.out.println(inneholdt("hei", ""));
+        System.out.println(inneholdt("hei", "hei"));
 
     }
 }
