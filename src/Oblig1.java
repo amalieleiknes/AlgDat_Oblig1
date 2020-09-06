@@ -372,12 +372,29 @@ public class Oblig1 {
 
 
         //Oblig1.maks(tomtArray);
-        System.out.println("OPPGAVE 1");
+        System.out.println("OPPGAVE 1 MAKS-METODE");
         int[] listeOppgave1 = randPerm(10);
         System.out.println("Det største tallet i listen: "+Oblig1.maks(listeOppgave1));
 
-        System.out.println("OPPGAVE 1");
+        System.out.println("OPPGAVE 1 OMBYTTINGER-METODE");
         int[] listeOppgave1_1 = randPerm(10);
+
+
+        int numberOfnumbers = 100;
+        int[] randomNumbers = randPerm(numberOfnumbers);
+        System.out.println(Arrays.toString( randomNumbers));
+        System.out.println("Det tok " + ombyttinger(randomNumbers) + " ombyttinger når antallet var "+numberOfnumbers);
+
+        int numberOfnumbers2 = 10000;
+        int[] randomNumbers2 = randPerm(numberOfnumbers2);
+        System.out.println("Det tok " + ombyttinger(randomNumbers2) + " ombyttinger når antallet var "+numberOfnumbers2);
+
+        int numberOfnumbers3 = 100000;
+        int[] randomNumbers3 = randPerm(numberOfnumbers3);
+        System.out.println("Det tok " + ombyttinger(randomNumbers3) + " ombyttinger når antallet var "+numberOfnumbers3);
+
+
+
         System.out.println(Arrays.toString(listeOppgave1_1));
         System.out.println("Det tok " + ombyttinger(listeOppgave1_1) + " ombyttinger å flytte det største tallet bakerst.");
         System.out.println(Arrays.toString(listeOppgave1_1));
