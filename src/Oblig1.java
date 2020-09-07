@@ -242,30 +242,49 @@ public class Oblig1 {
     }
 
 
-    // Oppgave 8 - Denne fungerer ikke om det er like tall i tabellen, men skjønner ikke hvorfor???
+    // Oppgave 8 - TODO: OK
     public static int[] indekssortering(int[] a) {
         int[] indeksTabell = new int[a.length];
         int[] sortedArray = Arrays.copyOf(a, a.length);
         Arrays.sort(sortedArray);       //hjelpetabell som er sortert i stigende rekkefølge
+        boolean indeksOpptatt = false;
 
         if (a.length < 1) {
-            return null;
-        } else {                        // hvis arrayet er tomt returneres null
-            for (int i = 0; i < a.length; i++) {           // løkke der vi tildeler indeksTabell[i] en verdi
-                for (int j = 0; j < a.length; j++) {       // løkke der vi sjekker gjennom arrayet om vi finner riktig verdi (sammenligner sortedArray med a, finner lik verdi)
-                    if (sortedArray[i] == a[j]) {        // finner neste tall i sorted array i a, som er neste indeks i indeksTabell
+            return null;     // hvis arrayet er tomt returneres null
+        } else {
 
-                        // når den har funnet en lik må vi sjekke om denne indeksen allerede ligger i indeksTabell.
-                        // hvis den allerede ligger der må metoden lete etter neste forekomst istedenfor å legge til indeksen i tabellen.
-                        // men dette får ikke jeg til
+            // løkke der vi tildeler indeksTabell[i] en verdi
+            for (int i = 0; i < a.length; i++) {
 
+                // løkke der vi sjekker gjennom arrayet om vi finner riktig verdi (sammenligner sortedArray med a, finner lik verdi)
+                for (int j = 0; j < a.length; j++) {
 
-                        // denne if-setningen får array med opptil 2 like tall til å bli riktig, me må finne en permanent løsning
-                        if (i > 0 && sortedArray[i] == sortedArray[i - 1]) {
+                    // finner neste tall i sorted array i a, som er neste indeks i indeksTabell
+                    if (sortedArray[i] == a[j]) {
+
+                        if(j==0 && i==0){
+                            indeksTabell[i] = j;
                             break;
                         }
 
-                        indeksTabell[i] = j;        // legger til indeksen til tallet som er funnet i indeksTabell.
+                        else {
+
+                            // hvis j allerede er i indeksTabell må den lete videre etter en høyere j
+                            for(int k = 0; k < indeksTabell.length; k++){
+                                if(indeksTabell[k] == j){
+                                    indeksOpptatt = true;
+                                    break;
+                                }
+                                else{
+                                    indeksOpptatt = false;
+                                }
+                            }
+
+                            if (!indeksOpptatt) {
+                                indeksTabell[i] = j;        // legger til indeksen til tallet
+                                break;
+                            }
+                        }
 
                     }
                 }
@@ -274,34 +293,50 @@ public class Oblig1 {
         }
     }
 
-    // Oppgave 9 - OK
+    // Oppgave 9 - TODO: OK
     public static  int[] tredjeMin(int[] a) {
         if (a.length < 3) {
             throw new NoSuchElementException("Det er mindre enn tre elementer i a, antall: " + a.length);
         } else {
             int[] sokeTabell = {a[0], a[1], a[2]}; //lager en ny tabell med kun de tre første tallene fra a
 
+            /* 0, 1, 2 */
             int m = Objects.requireNonNull(indekssortering(sokeTabell))[0]; // minsteverdi sin index
             int nm = Objects.requireNonNull(indekssortering(sokeTabell))[1]; // nest minste verdi sin indeks
-            int nnm = Objects.requireNonNull(indekssortering(sokeTabell))[2];// nest nest minste verdi sin indeks
+            int nnm = Objects.requireNonNull(indekssortering(sokeTabell))[2]; // nest nest minste verdi sin indeks
 
-            if (a[2] < a[0]) {
-                m = 2;
-                nnm = 0;
-            }
-            if (a[2] < a[1]) {
+            if (a[0] < a[1] && a[0] < a[2] && a[2]< a[1]) /* 0, 2, 1 */ {
+                m = 0;
                 nm = 2;
                 nnm = 1;
             }
-            if (a[1] < a[0]) {
+
+            else if (a[1] < a[0] && a[1] < a[2] && a[0]< a[2]) /* 1, 0, 2 */ {
                 m = 1;
                 nm = 0;
+                nnm = 2;
+            }
+
+            else if (a[1] < a[0] && a[1] < a[2] && a[2] < a[0]) /* 1, 2, 0 */ {
+                m = 1;
+                nm = 2;
+                nnm = 0;
+            }
+
+            else if (a[2] < a[0] && a[2] < a[1] && a[0] < a[1]) /* 2, 0, 1*/ {
+                m = 2;
+                nm =
+                nnm = 0;
+            }
+
+            else if (a[2] < a[1] && a[2] < a[0] && a[1] < a[0]) /* 2, 1, 0 */ {
+                m = 2;
+                nm = 1;
             }
 
             int minverdi = a[m];                // minste verdi
             int nestminverdi = a[nm];           // nest minste verdi
             int nestnestminverdi = a[nnm];      // nest nest minste verdi
-
 
             for (int i = 3; i < a.length; i++) {
                 if (a[i] < nestnestminverdi) {
@@ -329,7 +364,7 @@ public class Oblig1 {
                         nestnestminverdi = a[nnm];
                     }
                 }
-            }
+            } //sjekker resten av tallene i a
 
             // n i posisjon 0, nm i posisjon 1, nnm i posisjon 2
             sokeTabell[0] = m;
@@ -340,7 +375,7 @@ public class Oblig1 {
         }
     }
 
-    // Oppgave 1
+    // Oppgave 10 TODO: ferdig
     public static boolean inneholdt(String a, String b){
         if(a.length() == 0 || a.isBlank()){             //for å unngå å gå inn i metoden
             return true;
@@ -368,19 +403,22 @@ public class Oblig1 {
     }
 
 
-
-
     // main-metode for testing, slettes før innlevering
     public static void main(String[] args) {
         int[] tomtArray = {};
         int[] array1 = randPerm(10);
         int[] array9 = {-1, 5, 0, 4, 2, 7, -1, -8, -2, 4};
         int[] array10 = {2,5,7,8,3,6,8,9,6,8};
+        int[] likeTallArray = {5, 5, 5, 5, 5, 5};
+        int[] minusTallArray = {-1,-2,-3,-1,-7,-1000};
 
+        //System.out.println("Opgpave 8: " + Arrays.toString(indekssortering(array1)));
         System.out.println("Opprinnelig array: " + Arrays.toString(array9));
         System.out.println("Oppgave 9, output: " + Arrays.toString(tredjeMin(array9)));
 
 
+
+        /*
         //Oblig1.maks(tomtArray);
         System.out.println("OPPGAVE 1 MAKS-METODE");
         int[] listeOppgave1 = randPerm(10);
@@ -403,8 +441,6 @@ public class Oblig1 {
         int[] randomNumbers3 = randPerm(numberOfnumbers3);
         System.out.println("Det tok " + ombyttinger(randomNumbers3) + " ombyttinger når antallet var "+numberOfnumbers3);
 
-
-
         System.out.println(Arrays.toString(listeOppgave1_1));
         System.out.println("Det tok " + ombyttinger(listeOppgave1_1) + " ombyttinger å flytte det største tallet bakerst.");
         System.out.println(Arrays.toString(listeOppgave1_1));
@@ -415,26 +451,19 @@ public class Oblig1 {
         System.out.println("Usortert liste: " + Arrays.toString(oppg4List));
         Oblig1.delsortering(oppg4List);
         System.out.println("Sortert etter oddetall og partall " + Arrays.toString(oppg4List));
+        */
 
-
-        int[] likeTallArray = {5, 5, 5, 5, 5, 5};
-        int[] minusTallArray = {-1,-2,-3,-1,-7,-1000};
-        int[] randomArray = randPerm(10);
-        String a = "ABCA";
-        String b = "ALBLCLAJA";
-
-        /*System.out.println("Opgpave 8: " + antallUlikeUsortert(minusTallArray));*/
-
-        //Kjører metoden i oppgave 5:
+        /*//Kjører metoden i oppgave 5:
         System.out.println("OPPGAVE 5");
         char[] c = {'A','B','C','D','E', 'F','G','H','I','J'};
         char[] d = {'A'};
         char[] e = {};
         System.out.println(Arrays.toString(c));
-        /*rotasjon(e);*/
+        rotasjon(e);
         rotasjon(c, -4);
-        System.out.println(Arrays.toString(c));
+        System.out.println(Arrays.toString(c));*/
 
+        /*
         System.out.println("OPPGAVE 7 A");
         System.out.println(flett("HEI", "H"));
 
@@ -447,6 +476,7 @@ public class Oblig1 {
         System.out.println(inneholdt("hallo", "hei"));
         System.out.println(inneholdt("hei", ""));
         System.out.println(inneholdt("hei", "hei"));
+        */
 
     }
 }
