@@ -44,8 +44,19 @@ public class Oblig1 {
         return a[a.length - 1];
     }
 
-    //Oppgave 1 TODO: Nesten ferdig
-    // https://www.cs.hioa.no/~ulfu/appolonius/kap1/2/kap12.html#kode.1.2.4.a - 1.2.6
+    //Oppgave 1 - https://www.cs.hioa.no/~ulfu/appolonius/kap1/2/kap12.html#kode.1.2.4.a - 1.2.6
+
+    //Når blir det flest ombyttinger?
+    //Det blir flest ombyttinger de gangene tallet til venstre er større enn tallet til høyre.
+
+    //Når blir det færrest?
+    //Det blir færrest ombyttinger de gangene tallet til venstre er mindre enn tallet til høyre.
+    //Det blir altså færrest ombyttinger når listen er sortert i stigende rekkefølge.
+
+    //Hvor mange blir det i gjennomsnitt?
+    //Todo: Her må det legges inn formel på hvordan det regnes ut gjennomsnitt. 
+    //https://www.cs.hioa.no/~ulfu/appolonius/kap1/2/kap12.html#1.2.6 - 1.2.7
+
     //metode som teller hvor mange ganger en ombytting skjer - skal regne ut gjennomsnittet
     public static int ombyttinger(int[] a) {
         if(a.length < 2){
