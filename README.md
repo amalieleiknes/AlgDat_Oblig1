@@ -10,6 +10,6 @@ Oppgaven er levert av følgende studenter:
 
 I oppgaven har vi hatt følgende arbeidsfordeling:
 * Hannah har hatt hovedansvar for oppgave 1, 4, og 7. 
-* Caroline har hatt hovedansvar for oppgave 2, 5, og 8. 
-* Amalie har hatt hovedansvar for oppgave 3, 6 og 9. 
+* Caroline har hatt hovedansvar for oppgave 2, 5, og 6. 
+* Amalie har hatt hovedansvar for oppgave 3, 8 og 9. 
 * Vi har i fellesskap løst oppgave 10. 
