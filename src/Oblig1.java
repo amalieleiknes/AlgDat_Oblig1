@@ -5,7 +5,6 @@
  */
 
 import java.util.*;
-import static java.util.Arrays.*;
 
 public class Oblig1 {
 
@@ -65,17 +64,17 @@ public class Oblig1 {
         int antallUlike = 0;
         int lengde = a.length;
 
-        int[] copyOfA = Arrays.copyOf(a, a.length);
+        int[] copyOfA = Arrays.copyOf(a, a.length); //lager en kopi av array a for aa sjekke om arrayet er sortert
         Arrays.sort(copyOfA);
 
-        if(!Arrays.toString(a).equals(Arrays.toString(copyOfA))){
-            throw new IllegalStateException("feil array");
+        if(!Arrays.toString(a).equals(Arrays.toString(copyOfA))){ //sammenligner array a med den sorterte kopien, hvis de ikke er like kastes en exception
+            throw new IllegalStateException("Arrayet er ikke sortert!");
         }
 
-        if(lengde>0) {
+        if(lengde > 0) {
             antallUlike++;
-            for (int i = 1; i < lengde; i++) {
-                if (a[i]!=a[i-1]) {
+            for (int i = 1; i < lengde; i++) { //loeper gjennom arrayet og teller opp antall ulike verdier
+                if (a[i] != a[i-1]) {
                     antallUlike++;
                 }
             }
@@ -151,11 +150,10 @@ public class Oblig1 {
 
     // Oppgave 5
     public static void rotasjon(char[] a) {
-        if (a.length == 0) {
-            return;
+        if (a.length == 0) { //hvis arrayet er tomt gjoer metoden ingen ting
         } else {
-            char temp = a[a.length - 1];
-            for (int i = a.length - 1; i > 0; i--) {
+            char temp = a[a.length - 1]; //midlertidig verdi som tar vare paa siste verdi i arrayet
+            for (int i = a.length - 1; i > 0; i--) { //loekke som gaar gjennom arrayet og flytter alle verdier 1 enhet mot hoeyre
                 a[i] = a[i - 1];
             }
             a[0] = temp;
