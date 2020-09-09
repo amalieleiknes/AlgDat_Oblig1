@@ -60,26 +60,31 @@ public class Oblig1 {
     // Oppgave 2 TODO: Oppgave 2: a) Ikke unntak for tabell med 0 eller 1 verdi!
     //Oppgave 2: b) Feil unntak for en usortert tabell!
     public static int antallUlikeSortert(int[] a) {
-        boolean sortert = true;
-        for (int i = 0; i < a.length; i++) {
-            if (a[i] < a[i - 1]) {
-                sortert = false;
-            }
-        }
-        if (!sortert) {
-            throw new IllegalStateException("Tabellen er ikke sortert stigende!");
-        }
 
-        int antallUlike = 1;
-        if (a.length == 0) {
-            antallUlike = 0;
-        }
-        for (int i = 1; i < a.length; i++) {
-            if (a[i] != a[i - 1]) {
-                antallUlike++;
+        boolean sortert = true;
+        if (a.length < 1) {
+
+        } else {
+            for (int i = 0; i < a.length; i++) {
+                if (a[i] < a[i - 1]) {
+                    sortert = false;
+                }
             }
+            if (!sortert) {
+                throw new IllegalStateException("Tabellen er ikke sortert stigende!");
+            }
+
+            int antallUlike = 1;
+            if (a.length == 0) {
+                antallUlike = 0;
+            }
+            for (int i = 1; i < a.length; i++) {
+                if (a[i] != a[i - 1]) {
+                    antallUlike++;
+                }
+            }
+            return antallUlike;
         }
-        return antallUlike;
     }
 
     //Oppgave 3
@@ -108,8 +113,7 @@ public class Oblig1 {
         return antall;
     }
 
-    // Oppgave 4 TODO: Oppgave 4: a) Ikke unntak for en tom tabell!
-    //Oppgave 4: g) Det blir feil hvis det kun er partall!
+    // Oppgave 4 TODO: Oppgave 4: Oppgave 4: g) Det blir feil hvis det kun er partall!
     //Oppgave 4: l) Metoden gjør feil for negative verdier!
     //lest fra: https://www.geeksforgeeks.org/sort-even-numbers-ascending-order-sort-odd-numbers-descending-order/
     public static void delsortering(int[] a) {
