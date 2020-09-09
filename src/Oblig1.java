@@ -9,7 +9,7 @@ import static java.util.Arrays.*;
 
 public class Oblig1 {
 
-    // Oppgave 1 TODO: FERDIG
+    // Oppgave 1
     //hentet hjelp fra: https://stackoverflow.com/questions/34745203/using-a-for-loop-to-manually-sort-an-array-java
     public static int maks(int[] a) {
         if (a.length == 0) {
@@ -192,7 +192,7 @@ public class Oblig1 {
         return fullstendigSetning.toString();
     }
 
-    //Oppgave 7b) TODO: Oppgave 7b: f) Svaret skal bli ABCDEFGHIJKLMNOPQRSTUVWXY!
+    //Oppgave 7b)
     public static String flett(String... s) {
         if(s == null || s.length == 0){
             return "";
@@ -360,7 +360,7 @@ public class Oblig1 {
     }
 
 
-    // Oppgave 10 TODO: Oppgave 10: n) Dette (11477 ms) gikk sakte! Finn en bedre algoritme!
+    // Oppgave 10
     public static boolean inneholdt(String a, String b){
         if(a.length() == 0 || a.isBlank()){             //for aa unngaa aa gaa inn i metoden
             return true;
