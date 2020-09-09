@@ -42,7 +42,7 @@ public class Oblig1 {
 
     //metode som teller hvor mange ganger en ombytting skjer - skal regne ut gjennomsnittet
     public static int ombyttinger(int[] a) {
-        if(a.length < 2){
+        if (a.length < 2) {
             throw new NoSuchElementException("Listen maa ha to verdier!");
         }
         int ombytting = 0;
@@ -57,34 +57,27 @@ public class Oblig1 {
         return ombytting;
     }
 
-    // Oppgave 2 TODO: Oppgave 2: a) Ikke unntak for tabell med 0 eller 1 verdi!
-    //Oppgave 2: b) Feil unntak for en usortert tabell!
-    public static int antallUlikeSortert(int[] a) {
+    // Oppgave 2
+    public static int antallUlikeSortert(int [] a){
+        int antallUlike = 0;
+        int lengde = a.length;
 
-        boolean sortert = true;
-        if (a.length < 1) {
+        int[] copyOfA = Arrays.copyOf(a, a.length);
+        Arrays.sort(copyOfA);
 
-        } else {
-            for (int i = 0; i < a.length; i++) {
-                if (a[i] < a[i - 1]) {
-                    sortert = false;
-                }
-            }
-            if (!sortert) {
-                throw new IllegalStateException("Tabellen er ikke sortert stigende!");
-            }
+        if(!Arrays.toString(a).equals(Arrays.toString(copyOfA))){
+            throw new IllegalStateException("feil array");
+        }
 
-            int antallUlike = 1;
-            if (a.length == 0) {
-                antallUlike = 0;
-            }
-            for (int i = 1; i < a.length; i++) {
-                if (a[i] != a[i - 1]) {
+        if(lengde>0) {
+            antallUlike++;
+            for (int i = 1; i < lengde; i++) {
+                if (a[i]!=a[i-1]) {
                     antallUlike++;
                 }
             }
-            return antallUlike;
         }
+        return antallUlike;
     }
 
     //Oppgave 3
