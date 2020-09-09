@@ -36,8 +36,8 @@ public class Oblig1 {
      * Det blir altsaa ferrest ombyttinger naar listen er sortert i stigende rekkefolge.
 
     * Hvor mange blir det i gjennomsnitt?
-     * 2Hn - 3. For store n er Hn tilnærmet lik log(n) + 0.577.
-     * Sammenlikningen a[i] >= a[i + 1] skjer n ganger, da n er antall verdier i listen og siden i begynner på indeks 0.
+     * 2Hn - 3. For store n er Hn tilnermet lik log(n) + 0.577.
+     * Sammenlikningen a[i] >= a[i + 1] skjer n ganger, da n er antall verdier i listen og siden i begynner paa indeks 0.
      * I gjennomsnitt ville
     https://www.cs.hioa.no/~ulfu/appolonius/kap1/2/kap12.html#1.2.6 - 1.2.7
      **/
@@ -142,7 +142,7 @@ public class Oblig1 {
                 }
             }
 
-            // velger å bruke Arrays.sort da dobbel for-løkke ikke var effektivt nok
+            // velger aa bruke Arrays.sort da dobbel for-lokke ikke var effektivt nok
             Arrays.sort(a,0,oddetall);
             Arrays.sort(a,oddetall,a.length);
         }
@@ -168,14 +168,14 @@ public class Oblig1 {
         } else {
             int lengde = a.length;
 
-            char[] kopiertArray = Arrays.copyOf(a, lengde);     //kopiert array vi henter verdiene utifra for å populere a på nytt
+            char[] kopiertArray = Arrays.copyOf(a, lengde);     //kopiert array vi henter verdiene utifra for aa populere a paa nytt
 
             if (k > 0) {                                        // hvis k er positiv
                 int mod = k % lengde;                           // gir oss hvor mange plasser etter opprinnelig indeks verdien skal roteres til
 
-                for (int i = 0; i < lengde; i++) {              // for-løkke som skal gi nye verdier til a
-                    if (i + mod < lengde) {                     // hvis plassen + forskyvninger er mindre enn slutten på arrayet
-                        a[mod + i] = kopiertArray[i];           // a[indeksen på gjeldene verdi] får den nye verdien
+                for (int i = 0; i < lengde; i++) {              // for-lokke som skal gi nye verdier til a
+                    if (i + mod < lengde) {                     // hvis plassen + forskyvninger er mindre enn slutten paa arrayet
+                        a[mod + i] = kopiertArray[i];           // a[indeksen paa gjeldene verdi] faar den nye verdien
                     }
                 }
 
