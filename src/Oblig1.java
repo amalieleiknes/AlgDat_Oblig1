@@ -27,18 +27,20 @@ public class Oblig1 {
     }
 
     //Oppgave 1 - https://www.cs.hioa.no/~ulfu/appolonius/kap1/2/kap12.html#kode.1.2.4.a - 1.2.6
-    /*
-    Naar blir det flest ombyttinger?
-        Det blir flest ombyttinger de gangene tallet til venstre er storre enn tallet til hoyre.
+    /**
+    * Naar blir det flest ombyttinger?
+     * Det blir flest ombyttinger de gangene tallet til venstre er storre enn tallet til hoyre.
 
-    Naar blir det ferrest?
-        Det blir ferrest ombyttinger de gangene tallet til venstre er mindre enn tallet til hoyre.
-        Det blir altsaa ferrest ombyttinger naar listen er sortert i stigende rekkefolge.
+    * Naar blir det ferrest?
+     * Det blir ferrest ombyttinger de gangene tallet til venstre er mindre enn tallet til hoyr
+     * Det blir altsaa ferrest ombyttinger naar listen er sortert i stigende rekkefolge.
 
-    Hvor mange blir det i gjennomsnitt?
-    Todo: Her maa det legges inn formel paa hvordan det regnes ut gjennomsnitt.
+    * Hvor mange blir det i gjennomsnitt?
+     * 2Hn - 3. For store n er Hn tilnærmet lik log(n) + 0.577.
+     * Sammenlikningen a[i] >= a[i + 1] skjer n ganger, da n er antall verdier i listen og siden i begynner på indeks 0.
+     * I gjennomsnitt ville
     https://www.cs.hioa.no/~ulfu/appolonius/kap1/2/kap12.html#1.2.6 - 1.2.7
-     */
+     **/
 
     //metode som teller hvor mange ganger en ombytting skjer - skal regne ut gjennomsnittet
     public static int ombyttinger(int[] a) {
