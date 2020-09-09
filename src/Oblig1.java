@@ -37,9 +37,10 @@ public class Oblig1 {
      * Det blir altsaa ferrest ombyttinger naar listen er sortert i stigende rekkefolge.
 
     * Hvor mange blir det i gjennomsnitt?
-     * 
-     *
-    https://www.cs.hioa.no/~ulfu/appolonius/kap1/2/kap12.html#1.2.6 - 1.2.7
+     * Det utfores noyaktig like mange ombyttinger som det er iversjoner. En inversjon er naar
+     * tallet til hoyre er mindre enn tallet til venstre, (i tilfeller hvor listen skal sorteres i stigende rekkefolge).
+     * I gjennomsnitt blir det n(n-1)/4 ombyttinger.
+     * Hentet fra: https://www.cs.hioa.no/~ulfu/appolonius/kap1/3/kap13.html#1.3.2 og under Algoritmeanalyse i 1.3.3
      **/
 
     //metode som teller hvor mange ganger en ombytting skjer - skal regne ut gjennomsnittet
