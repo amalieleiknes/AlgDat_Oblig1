@@ -42,7 +42,7 @@ public class Oblig1 {
 
     //metode som teller hvor mange ganger en ombytting skjer - skal regne ut gjennomsnittet
     public static int ombyttinger(int[] a) {
-        if(a.length < 2){
+        if (a.length < 2) {
             throw new NoSuchElementException("Listen maa ha to verdier!");
         }
         int ombytting = 0;
@@ -58,24 +58,23 @@ public class Oblig1 {
     }
 
     // Oppgave 2
-    public static int antallUlikeSortert(int[] a) {
-        boolean sortert = true;
-        for (int i = 0; i < a.length; i++) {
-            if (a[i] < a[i - 1]) {
-                sortert = false;
-            }
-        }
-        if (!sortert) {
-            throw new IllegalStateException("Tabellen er ikke sortert stigende!");
+    public static int antallUlikeSortert(int [] a){
+        int antallUlike = 0;
+        int lengde = a.length;
+
+        int[] copyOfA = Arrays.copyOf(a, a.length);
+        Arrays.sort(copyOfA);
+
+        if(!Arrays.toString(a).equals(Arrays.toString(copyOfA))){
+            throw new IllegalStateException("feil array");
         }
 
-        int antallUlike = 1;
-        if (a.length == 0) {
-            antallUlike = 0;
-        }
-        for (int i = 1; i < a.length; i++) {
-            if (a[i] != a[i - 1]) {
-                antallUlike++;
+        if(lengde>0) {
+            antallUlike++;
+            for (int i = 1; i < lengde; i++) {
+                if (a[i]!=a[i-1]) {
+                    antallUlike++;
+                }
             }
         }
         return antallUlike;
@@ -107,65 +106,64 @@ public class Oblig1 {
         return antall;
     }
 
-    // Oppgave 4
+    // Oppgave 4 TODO: Oppgave 4: Oppgave 4: g) Det blir feil hvis det kun er partall!
+    //Oppgave 4: l) Metoden gjør feil for negative verdier!
     //lest fra: https://www.geeksforgeeks.org/sort-even-numbers-ascending-order-sort-odd-numbers-descending-order/
     public static void delsortering(int[] a) {
-        if (a == null) {
-            throw new NullPointerException("Listen er null."); //kaster exception dersom listen er null.
-        }
-        if (a.length == 0) {
-            throw new NoSuchElementException("Listen er tom!"); //kaster exception dersom listen er tom.
-        }
+        if (a == null || a.length == 0) {
+            // Ingenting skjer om listen er tom
+        } else {
 
-        int venstre = 0;           //setter en grense fra venstre
-        int hoyre = a.length - 1;  //grense til hoyre
+            int venstre = 0;           //setter en grense fra venstre
+            int hoyre = a.length - 1;  //grense til hoyre
 
-        while (venstre < hoyre) {
-            while (a[venstre] % 2 != 0 && venstre < hoyre) {  //dersom venstre er mindre enn hoyre og det er et oddetall, flytter vi kun telleren
-                venstre++;
-            }
-            while (a[hoyre] % 2 == 0 && venstre < hoyre) {  //dersom venstre er mindre enn hoyre og et partall, flytt telleren
-                hoyre--;
-            }
-            if (venstre < hoyre) {  //gaar inn i if-statement naar while-lokkene har truffet et partall og oddetall
-                int midlertidig = a[venstre];   //gjore plassen til venstre aapen
-                a[venstre] = a[hoyre];          //setter inn verdi fra hoyre til venstre
-                a[hoyre] = midlertidig;         //setter inn verdien som sto til venstre paa hoyre plass
-                venstre++;
-                hoyre--;
-            }
-        }
-
-        //gaar gjennom listen med for-each for aa finne antall oddetall
-        int oddetall = 0;
-        for (int number : a) {
-            if (number % 2 != 0) {
-                oddetall++;
-            }
-        }
-
-        //sortere oddetall
-        int temp;
-        for (int i = 0; i < oddetall; i++) {
-            for (int k = 0; k < oddetall - 1; k++) {
-                if (a[k] > a[k + 1]) {
-                    temp = a[k];
-                    a[k] = a[k + 1];
-                    a[k + 1] = temp;
+            while (venstre < hoyre) {
+                while (a[venstre] % 2 != 0 && venstre < hoyre) {  //dersom venstre er mindre enn hoyre og det er et oddetall, flytter vi kun telleren
+                    venstre++;
+                }
+                while (a[hoyre] % 2 == 0 && venstre < hoyre) {  //dersom venstre er mindre enn hoyre og et partall, flytt telleren
+                    hoyre--;
+                }
+                if (venstre < hoyre) {  //gaar inn i if-statement naar while-lokkene har truffet et partall og oddetall
+                    int midlertidig = a[venstre];   //gjore plassen til venstre aapen
+                    a[venstre] = a[hoyre];          //setter inn verdi fra hoyre til venstre
+                    a[hoyre] = midlertidig;         //setter inn verdien som sto til venstre paa hoyre plass
+                    venstre++;
+                    hoyre--;
                 }
             }
-        }
 
-        int partall = a.length - oddetall;
+            //gaar gjennom listen med for-each for aa finne antall oddetall
+            int oddetall = 0;
+            for (int number : a) {
+                if (number % 2 != 0) {
+                    oddetall++;
+                }
+            }
 
-        //sortere partall
-        for (int i = partall; i < a.length; i++) {
+            //sortere oddetall
+            int temp;
+            for (int i = 0; i < oddetall; i++) {
+                for (int k = 0; k < oddetall - 1; k++) {
+                    if (a[k] > a[k + 1]) {
+                        temp = a[k];
+                        a[k] = a[k + 1];
+                        a[k + 1] = temp;
+                    }
+                }
+            }
 
-            for (int j = partall; j < a.length - 1; j++) {
-                if (a[j] > a[j + 1]) {
-                    int midlertidig = a[j];
-                    a[j] = a[j + 1];
-                    a[j + 1] = midlertidig;
+            int partall = a.length - oddetall;
+
+            //sortere partall
+            for (int i = partall; i < a.length; i++) {
+
+                for (int j = partall; j < a.length - 1; j++) {
+                    if (a[j] > a[j + 1]) {
+                        int midlertidig = a[j];
+                        a[j] = a[j + 1];
+                        a[j + 1] = midlertidig;
+                    }
                 }
             }
         }
@@ -184,17 +182,19 @@ public class Oblig1 {
         }
     }
 
-    // Oppgave 6
+    // Oppgave 6 TODO: Oppgave 6: i, j, k, l) Metoden er for ineffektiv. Må forbedres!
     public static void rotasjon(char[] a, int k) {
-        if (k < 0) {
-            k += a.length;
-        }
-        for (int i = 0; i < k; i++) {
-            char temp = a[a.length - 1];
-            for (int j = a.length - 1; j > 0; j--) {
-                a[j] = a[j - 1];
+        if (a.length != 0) {
+            if (k < 0) {
+                k += a.length;
             }
-            a[0] = temp;
+            for (int i = 0; i < k; i++) {
+                char temp = a[a.length - 1];
+                for (int j = a.length - 1; j > 0; j--) {
+                    a[j] = a[j - 1];
+                }
+                a[0] = temp;
+            }
         }
     }
 
@@ -215,7 +215,7 @@ public class Oblig1 {
         return fullstendigSetning.toString();
     }
 
-    //Oppgave 7b)
+    //Oppgave 7b) TODO: Oppgave 7b: f) Svaret skal bli ABCDEFGHIJKLMNOPQRSTUVWXY!
     public static String flett(String... s) {
         if(s == null || s.length == 0){
             return "";
@@ -244,60 +244,66 @@ public class Oblig1 {
 
     // Oppgave 8
     public static int[] indekssortering(int[] a) {
-        int[] indeksTabell = new int[a.length];
-        int[] sortedArray = Arrays.copyOf(a, a.length);
-        Arrays.sort(sortedArray);       //hjelpetabell som er sortert i stigende rekkefolge
-        boolean indeksOpptatt = false;
+        int[] indeksTabell = null;
 
-        if (a.length < 1) {
-            return null;     // hvis arrayet er tomt returneres null
-        } else {
+        if(a.length==0){
+            indeksTabell = new int[0];
+        }
+        else {
+            indeksTabell = new int[a.length];
+            int[] sortedArray = Arrays.copyOf(a, a.length);
+            Arrays.sort(sortedArray);       //hjelpetabell som er sortert i stigende rekkefolge
+            boolean indeksOpptatt = false;
 
-            // lokke der vi tildeler indeksTabell[i] en verdi
-            for (int i = 0; i < a.length; i++) {
+            if (a.length < 1) {
+                return null;     // hvis arrayet er tomt returneres null
+            } else {
 
-                // lokke der vi sjekker gjennom arrayet om vi finner riktig verdi (sammenligner sortedArray med a, finner lik verdi)
-                for (int j = 0; j < a.length; j++) {
+                // lokke der vi tildeler indeksTabell[i] en verdi
+                for (int i = 0; i < a.length; i++) {
 
-                    // finner neste tall i sorted array i a, som er neste indeks i indeksTabell
-                    if (sortedArray[i] == a[j]) {
+                    // lokke der vi sjekker gjennom arrayet om vi finner riktig verdi (sammenligner sortedArray med a, finner lik verdi)
+                    for (int j = 0; j < a.length; j++) {
 
-                        if(j==0 && i==0){
-                            indeksTabell[i] = j;
-                            break;
-                        }
+                        // finner neste tall i sorted array i a, som er neste indeks i indeksTabell
+                        if (sortedArray[i] == a[j]) {
 
-                        else {
+                            if (j == 0 && i == 0) {
+                                indeksTabell[i] = j;
+                                break;
+                            } else {
 
-                            // hvis j allerede er i indeksTabell maa den lete videre etter en hoyere j
-                            for(int k = 0; k < indeksTabell.length; k++){
-                                if(indeksTabell[k] == j){
-                                    indeksOpptatt = true;
+                                // hvis j allerede er i indeksTabell maa den lete videre etter en hoyere j
+                                for (int k = 0; k < indeksTabell.length; k++) {
+                                    if (indeksTabell[k] == j) {
+                                        indeksOpptatt = true;
+                                        break;
+                                    } else {
+                                        indeksOpptatt = false;
+                                    }
+                                }
+
+                                if (!indeksOpptatt) {
+                                    indeksTabell[i] = j;        // legger til indeksen til tallet
                                     break;
                                 }
-                                else{
-                                    indeksOpptatt = false;
-                                }
                             }
 
-                            if (!indeksOpptatt) {
-                                indeksTabell[i] = j;        // legger til indeksen til tallet
-                                break;
-                            }
                         }
-
                     }
                 }
+
             }
-            return indeksTabell;
-        }
+
+        }return indeksTabell;
     }
 
-    // Oppgave 9 - TODO: OK
+    // Oppgave 9
     public static  int[] tredjeMin(int[] a) {
         if (a.length < 3) {
             throw new NoSuchElementException("Det er mindre enn tre elementer i a, antall: " + a.length);
         } else {
+
             int[] sokeTabell = {a[0], a[1], a[2]}; //lager en ny tabell med kun de tre forste tallene fra a
 
             /* 0, 1, 2 */
@@ -305,33 +311,34 @@ public class Oblig1 {
             int nm = Objects.requireNonNull(indekssortering(sokeTabell))[1]; // nest minste verdi sin indeks
             int nnm = Objects.requireNonNull(indekssortering(sokeTabell))[2]; // nest nest minste verdi sin indeks
 
-            if (a[0] < a[1] && a[0] < a[2] && a[2]< a[1]) /* 0, 2, 1 */ {
+            if (a[0] < a[1] && a[1] < a[2]) /* 0, 1, 2 */ {
                 m = 0;
-                nm = 2;
-                nnm = 1;
+                nm = 1;
+                nnm = 2;
             }
 
-            else if (a[1] < a[0] && a[1] < a[2] && a[0]< a[2]) /* 1, 0, 2 */ {
+            else if (a[1] < a[0] && a[0] < a[2]) /* 1, 0, 2 */ {
                 m = 1;
                 nm = 0;
                 nnm = 2;
             }
 
-            else if (a[1] < a[0] && a[1] < a[2] && a[2] < a[0]) /* 1, 2, 0 */ {
+            else if (a[1] < a[2] && a[2] < a[0]) /* 1, 2, 0 */ {
                 m = 1;
                 nm = 2;
                 nnm = 0;
             }
 
-            else if (a[2] < a[0] && a[2] < a[1] && a[0] < a[1]) /* 2, 0, 1*/ {
+            else if (a[2] < a[0] && a[0] < a[1]) /* 2, 0, 1*/ {
                 m = 2;
-                nm =
-                nnm = 0;
+                nm = 0;
+                nnm = 1;
             }
 
-            else if (a[2] < a[1] && a[2] < a[0] && a[1] < a[0]) /* 2, 1, 0 */ {
+            else if (a[2] < a[1] && a[1] < a[0]) /* 2, 1, 0 */ {
                 m = 2;
                 nm = 1;
+                nnm = 0;
             }
 
             int minverdi = a[m];                // minste verdi
@@ -375,7 +382,8 @@ public class Oblig1 {
         }
     }
 
-    // Oppgave 10 TODO: ferdig
+
+    // Oppgave 10 TODO: Oppgave 10: n) Dette (11477 ms) gikk sakte! Finn en bedre algoritme!
     public static boolean inneholdt(String a, String b){
         if(a.length() == 0 || a.isBlank()){             //for aa unngaa aa gaa inn i metoden
             return true;
