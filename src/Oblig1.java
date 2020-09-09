@@ -57,7 +57,8 @@ public class Oblig1 {
         return ombytting;
     }
 
-    // Oppgave 2
+    // Oppgave 2 TODO: Oppgave 2: a) Ikke unntak for tabell med 0 eller 1 verdi!
+    //Oppgave 2: b) Feil unntak for en usortert tabell!
     public static int antallUlikeSortert(int[] a) {
         boolean sortert = true;
         for (int i = 0; i < a.length; i++) {
@@ -107,7 +108,9 @@ public class Oblig1 {
         return antall;
     }
 
-    // Oppgave 4
+    // Oppgave 4 TODO: Oppgave 4: a) Ikke unntak for en tom tabell!
+    //Oppgave 4: g) Det blir feil hvis det kun er partall!
+    //Oppgave 4: l) Metoden gjør feil for negative verdier!
     //lest fra: https://www.geeksforgeeks.org/sort-even-numbers-ascending-order-sort-odd-numbers-descending-order/
     public static void delsortering(int[] a) {
         if (a == null) {
@@ -184,7 +187,11 @@ public class Oblig1 {
         }
     }
 
-    // Oppgave 6
+    // Oppgave 6 TODO: Oppgave 6: a) Skal ikke kaste unntak for en tom tabell!!
+    //Oppgave 6: i) Metoden er for ineffektiv. Må forbedres!
+    //Oppgave 6: j) Metoden er for ineffektiv. Må forbedres!
+    //Oppgave 6: k) Metoden er for ineffektiv. Må forbedres!
+    //Oppgave 6: l) Metoden er for ineffektiv. Må forbedres!
     public static void rotasjon(char[] a, int k) {
         if (k < 0) {
             k += a.length;
@@ -215,7 +222,7 @@ public class Oblig1 {
         return fullstendigSetning.toString();
     }
 
-    //Oppgave 7b)
+    //Oppgave 7b) TODO: Oppgave 7b: f) Svaret skal bli ABCDEFGHIJKLMNOPQRSTUVWXY!
     public static String flett(String... s) {
         StringBuilder stringBuilder = new StringBuilder();
         for (int x = 0; x < s.length; x++) {                //ytre - x blir en teller for indeksen til bokstavene i hvert ord.
@@ -232,7 +239,7 @@ public class Oblig1 {
         return stringBuilder.toString();
     }
 
-    // Oppgave 8
+    // Oppgave 8 TODO: Opgave 8: b) Indekstabellen skal ha lengde 0!
     public static int[] indekssortering(int[] a) {
         int[] indeksTabell = new int[a.length];
         int[] sortedArray = Arrays.copyOf(a, a.length);
@@ -283,7 +290,7 @@ public class Oblig1 {
         }
     }
 
-    // Oppgave 9 - TODO: OK
+    // Oppgave 9 - TODO: Oppgave 9: c) Feil for [2, 3, 1] . f) Feil for [2, 3, 1, 4, 5, 6]
     public static  int[] tredjeMin(int[] a) {
         if (a.length < 3) {
             throw new NoSuchElementException("Det er mindre enn tre elementer i a, antall: " + a.length);
@@ -365,7 +372,7 @@ public class Oblig1 {
         }
     }
 
-    // Oppgave 10 TODO: ferdig
+    // Oppgave 10 TODO: Oppgave 10: n) Dette (11477 ms) gikk sakte! Finn en bedre algoritme!
     public static boolean inneholdt(String a, String b){
         if(a.length() == 0 || a.isBlank()){             //for aa unngaa aa gaa inn i metoden
             return true;
