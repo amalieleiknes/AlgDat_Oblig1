@@ -217,8 +217,14 @@ public class Oblig1 {
 
     //Oppgave 7b)
     public static String flett(String... s) {
+        int lengsteOrd = s[0].length();
+        for (int i = 1; i < s.length; i++){
+            if(s[i].length() > lengsteOrd){
+                lengsteOrd = s[i].length();
+            }
+        }
         StringBuilder stringBuilder = new StringBuilder();
-        for (int x = 0; x < s.length; x++) {                //ytre - x blir en teller for indeksen til bokstavene i hvert ord.
+        for (int x = 0; x < lengsteOrd; x++) {                //ytre - x blir en teller for indeksen til bokstavene i hvert ord.
             for (int y = 0; y < s.length; y++) {            //indre - y blir en teller for hvert ord i listen s.
                 if (s[y] != null && s[y].length() != 0 || s[x] != null) {  //sjekker at ikke bokstaven i indeks[x]
                     if (s[y].length() > x) {                                //ikke er null, eller lengde lik 0.
@@ -231,6 +237,7 @@ public class Oblig1 {
         }
         return stringBuilder.toString();
     }
+
 
     // Oppgave 8
     public static int[] indekssortering(int[] a) {
