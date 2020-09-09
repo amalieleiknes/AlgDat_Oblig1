@@ -194,6 +194,9 @@ public class Oblig1 {
 
     //Oppgave 7b) TODO: Oppgave 7b: f) Svaret skal bli ABCDEFGHIJKLMNOPQRSTUVWXY!
     public static String flett(String... s) {
+        if(s == null || s.length == 0){
+            return "";
+        }
         int lengsteOrd = s[0].length();
         for (int i = 1; i < s.length; i++){
             if(s[i].length() > lengsteOrd){
@@ -363,21 +366,24 @@ public class Oblig1 {
             return true;
         }
 
+        String A = a.toUpperCase();
+        String B = b.toUpperCase();
+
         int[] tallRegisterA = new int[256];             //oppretter to heltallarrays til aa legge til antall
         int[] tallRegisterB = new int[256];             //ASCII-verdier i.
 
         for(int i = 0; i < a.length(); i++){            //forste for-lokke kjorer gjennom String a, gjor om
-            int asciiVerdi = a.toUpperCase().charAt(i); //alle bokstavene til store bokstaver og finner ASCII-verdien
+            int asciiVerdi = A.charAt(i);               //alle bokstavene til store bokstaver og finner ASCII-verdien
             tallRegisterA[asciiVerdi]++;                //til bokstaven i [i]. Deretter legges det til
         }                                               //+1 paa indeksen til ASCII-verdien i tallRegisterA.
 
         for(int j = 0; j < b.length(); j++){                //Det samme skjer i for-lokken, lik som for-lokken over.
-            int asciiVerdi = b.toUpperCase().charAt(j);
+            int asciiVerdi = B.charAt(j);
             tallRegisterB[asciiVerdi]++;
         }
 
         for(int i = 0; i < tallRegisterA.length; i++){      //gaar gjennom tallRegisterA
-            if( (tallRegisterA[i] > tallRegisterB[i]) ){    //dersom antallet er storre i tallRegisterA[i], enn
+            if((tallRegisterA[i] > tallRegisterB[i]) ){     //dersom antallet er storre i tallRegisterA[i], enn
                 return false;                               //i tallRegisterB[i], inngaar ikke alle bokstavene fra tallRegisterA
             }                                               //i tallRegisterB og vi gaar ut av for-lokken
         }
