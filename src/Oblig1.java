@@ -161,18 +161,40 @@ public class Oblig1 {
         }
     }
 
-    // Oppgave 6 TODO: Oppgave 6: i, j, k, l) Metoden er for ineffektiv. Må forbedres!
-    public static void rotasjon(char[] a, int k) {
-        if (a.length != 0) {
-            if (k < 0) {
-                k += a.length;
-            }
-            for (int i = 0; i < k; i++) {
-                char temp = a[a.length - 1];
-                for (int j = a.length - 1; j > 0; j--) {
-                    a[j] = a[j - 1];
+    // Oppgave 6
+    public static void rotasjon(char[] a, int k){
+        if(a.length<1){
+
+        } else {
+            int lengde = a.length;
+
+            char[] kopiertArray = Arrays.copyOf(a, lengde);     //kopiert array vi henter verdiene utifra for å populere a på nytt
+
+            if (k > 0) {                                        // hvis k er positiv
+                int mod = k % lengde;                           // gir oss hvor mange plasser etter opprinnelig indeks verdien skal roteres til
+
+                for (int i = 0; i < lengde; i++) {              // for-løkke som skal gi nye verdier til a
+                    if (i + mod < lengde) {                     // hvis plassen + forskyvninger er mindre enn slutten på arrayet
+                        a[mod + i] = kopiertArray[i];           // a[indeksen på gjeldene verdi] får den nye verdien
+                    }
                 }
-                a[0] = temp;
+
+                for (int i = 0; i < mod; i++) {
+                    a[i] = kopiertArray[lengde - mod + i];
+                }
+            }
+
+            if (k < 0) {                                        // hvis k er negativ
+                int mod = (-k) % lengde;
+                for (int i = 0; i < lengde; i++) {
+                    if (i + mod < lengde) {
+                        a[i] = kopiertArray[i + mod];
+                    }
+                }
+
+                for (int i = 0; i < mod; i++) {
+                    a[lengde - mod + i] = kopiertArray[i];
+                }
             }
         }
     }
