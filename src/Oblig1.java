@@ -1,29 +1,13 @@
-import java.util.*;
+/*Oppgaven er levert av folgende studenter:
+* Amalie Christine Leiknes, S340559, s340559@oslomet.no
+* Caroline Sofie Jetteberg, S313564, s313564@oslomet.no
+* Hannah Marie Maurstad Eriksen, S325340, s325340@oslomet.no
+ */
 
+import java.util.*;
 import static java.util.Arrays.*;
 
 public class Oblig1 {
-
-    // Metoder som generer testverdier til int[] a. Kilde: Kompendie til "appolonius", url. "https://www.cs.hioa.no/~ulfu/appolonius/kap1/1/kap11.html#1.1.2", Programkode 1.1.8 d og e.
-    public static void bytt(int[] a, int i, int j) {
-        int temp = a[i];
-        a[i] = a[j];
-        a[j] = temp;
-    }
-
-    public static int[] randPerm(int n) {
-        Random r = new Random();
-
-        int[] a = new int[n];
-        setAll(a, i -> i + 1);           // legger inn tallene 1, 2, . , n
-
-        for (int k = n - 1; k > 0; k--)         // løkke som går n - 1 ganger
-        {
-            int i = r.nextInt(k + 1);       // en tilfeldig tall fra 0 til k
-            bytt(a, k, i);                        // bytter om
-        }
-        return a;                               // permutasjonen returneres
-    }
 
     // Oppgave 1 TODO: FERDIG
     //hentet hjelp fra: https://stackoverflow.com/questions/34745203/using-a-for-loop-to-manually-sort-an-array-java
@@ -32,7 +16,6 @@ public class Oblig1 {
             throw new NoSuchElementException("Listen er tom!");
         }
 
-        System.out.println("Liste blandet: " + Arrays.toString(a));
         for (int i = 0; i < a.length - 1; i++) {
             if (a[i] >= a[i + 1]) {
                 int midlertidig = a[i];
@@ -40,27 +23,27 @@ public class Oblig1 {
                 a[i + 1] = midlertidig;
             }
         }
-        System.out.println("Liste med største bakerst: " + Arrays.toString(a));
         return a[a.length - 1];
     }
 
     //Oppgave 1 - https://www.cs.hioa.no/~ulfu/appolonius/kap1/2/kap12.html#kode.1.2.4.a - 1.2.6
+    /*
+    Naar blir det flest ombyttinger?
+        Det blir flest ombyttinger de gangene tallet til venstre er storre enn tallet til hoyre.
 
-    //Når blir det flest ombyttinger?
-    //Det blir flest ombyttinger de gangene tallet til venstre er større enn tallet til høyre.
+    Naar blir det ferrest?
+        Det blir ferrest ombyttinger de gangene tallet til venstre er mindre enn tallet til hoyre.
+        Det blir altsaa ferrest ombyttinger naar listen er sortert i stigende rekkefolge.
 
-    //Når blir det færrest?
-    //Det blir færrest ombyttinger de gangene tallet til venstre er mindre enn tallet til høyre.
-    //Det blir altså færrest ombyttinger når listen er sortert i stigende rekkefølge.
-
-    //Hvor mange blir det i gjennomsnitt?
-    //Todo: Her må det legges inn formel på hvordan det regnes ut gjennomsnitt. 
-    //https://www.cs.hioa.no/~ulfu/appolonius/kap1/2/kap12.html#1.2.6 - 1.2.7
+    Hvor mange blir det i gjennomsnitt?
+    Todo: Her maa det legges inn formel paa hvordan det regnes ut gjennomsnitt.
+    https://www.cs.hioa.no/~ulfu/appolonius/kap1/2/kap12.html#1.2.6 - 1.2.7
+     */
 
     //metode som teller hvor mange ganger en ombytting skjer - skal regne ut gjennomsnittet
     public static int ombyttinger(int[] a) {
         if(a.length < 2){
-            throw new NoSuchElementException("Listen må ha to verdier!");
+            throw new NoSuchElementException("Listen maa ha to verdier!");
         }
         int ombytting = 0;
         for (int i = 0; i < a.length - 1; i++) {
@@ -74,7 +57,7 @@ public class Oblig1 {
         return ombytting;
     }
 
-    // Oppgave 2 - ikke kjørt testene på denne
+    // Oppgave 2
     public static int antallUlikeSortert(int[] a) {
         boolean sortert = true;
         for (int i = 0; i < a.length; i++) {
@@ -98,7 +81,7 @@ public class Oblig1 {
         return antallUlike;
     }
 
-    //Oppgave 3 - Denne er ok nå, hehe
+    //Oppgave 3
     public static int antallUlikeUsortert(int[] a) {
         int antall = 1;
         int nyttTall;
@@ -106,8 +89,8 @@ public class Oblig1 {
         if (a.length < 1) {
             return 0;
         }
-        for (int i = 1; i < a.length; i++) {        //går gjennom arrayet og sjekker om tallet har vært tidl
-            nyttTall = a[i];                    //variabelen som sjekkes om har vært tidligere
+        for (int i = 1; i < a.length; i++) {        //gaar gjennom arrayet og sjekker om tallet har vert tidl
+            nyttTall = a[i];                    //variabelen som sjekkes om har vert tidligere
             for (int j = i + 1; j < a.length; j++) {
                 int telteTall = a[j];
                 if (nyttTall != telteTall && nyttTall != a[0]) {
@@ -124,7 +107,7 @@ public class Oblig1 {
         return antall;
     }
 
-    // Oppgave 4 TODO: FERDIG
+    // Oppgave 4
     //lest fra: https://www.geeksforgeeks.org/sort-even-numbers-ascending-order-sort-odd-numbers-descending-order/
     public static void delsortering(int[] a) {
         if (a == null) {
@@ -135,25 +118,25 @@ public class Oblig1 {
         }
 
         int venstre = 0;           //setter en grense fra venstre
-        int hoyre = a.length - 1;  //grense til høyre
+        int hoyre = a.length - 1;  //grense til hoyre
 
         while (venstre < hoyre) {
             while (a[venstre] % 2 != 0 && venstre < hoyre) {  //dersom venstre er mindre enn hoyre og det er et oddetall, flytter vi kun telleren
                 venstre++;
             }
-            while (a[hoyre] % 2 == 0 && venstre < hoyre) {  //dersom venstre er mindre enn høyre og et partall, flytt telleren
+            while (a[hoyre] % 2 == 0 && venstre < hoyre) {  //dersom venstre er mindre enn hoyre og et partall, flytt telleren
                 hoyre--;
             }
-            if (venstre < hoyre) {  //går inn i if-statement når while-løkkene har truffet et partall og oddetall
-                int midlertidig = a[venstre];   //gjøre plassen til venstre åpen
-                a[venstre] = a[hoyre];          //setter inn verdi fra høyre til venstre
-                a[hoyre] = midlertidig;         //setter inn verdien som sto til venstre på høyre plass
+            if (venstre < hoyre) {  //gaar inn i if-statement naar while-lokkene har truffet et partall og oddetall
+                int midlertidig = a[venstre];   //gjore plassen til venstre aapen
+                a[venstre] = a[hoyre];          //setter inn verdi fra hoyre til venstre
+                a[hoyre] = midlertidig;         //setter inn verdien som sto til venstre paa hoyre plass
                 venstre++;
                 hoyre--;
             }
         }
 
-        //går gjennom listen med for-each for å finne antall oddetall
+        //gaar gjennom listen med for-each for aa finne antall oddetall
         int oddetall = 0;
         for (int number : a) {
             if (number % 2 != 0) {
@@ -188,8 +171,7 @@ public class Oblig1 {
         }
     }
 
-
-    // Oppgave 5 - ikke kjørt testene på denne
+    // Oppgave 5
     public static void rotasjon(char[] a) {
         if (a.length == 0) {
             return;
@@ -202,8 +184,7 @@ public class Oblig1 {
         }
     }
 
-
-    // Oppgave 6 - ikke kjørt testene på denne
+    // Oppgave 6
     public static void rotasjon(char[] a, int k) {
         if (k < 0) {
             k += a.length;
@@ -217,32 +198,31 @@ public class Oblig1 {
         }
     }
 
-    // Oppgave 7a) TODO: FERDIG
+    // Oppgave 7a)
     //Hentet hjelp fra --> https://www.cs.hioa.no/~ulfu/appolonius/kap1/3/fasit1311.html
     public static String flett(String s, String t) {
         int kortesteString = Math.min(s.length(), t.length()); //finner ut hvilken String som er den korteste
         StringBuilder fullstendigSetning = new StringBuilder(); //oppretter en StringBuilder som skal returneres
 
         for(int i = 0; i < kortesteString; i++){
-            fullstendigSetning.append(s.charAt(i)).append(t.charAt(i));   //fullstendigSetning "appender" først fra s i
+            fullstendigSetning.append(s.charAt(i)).append(t.charAt(i));   //fullstendigSetning "appender" forst fra s i
         }                                                                 //indeks (i), deretter fra String t i indeks(i).
 
-        //etter å ha lagt til annen hver bokstav i for-løkken, legges det til de siste bokstavene ved hjelp av metoden "substring".
+        //etter aa ha lagt til annen hver bokstav i for-lokken, legges det til de siste bokstavene ved hjelp av metoden "substring".
         //den legger til bokstavene *fra* indeks "kortesteString" og ut.
         fullstendigSetning.append(s.substring(kortesteString)).append(t.substring(kortesteString));
 
         return fullstendigSetning.toString();
     }
 
-    //Oppgave 7b) TODO: FERDIG
+    //Oppgave 7b)
     public static String flett(String... s) {
         StringBuilder stringBuilder = new StringBuilder();
-        System.out.println(Arrays.toString(s));
         for (int x = 0; x < s.length; x++) {                //ytre - x blir en teller for indeksen til bokstavene i hvert ord.
             for (int y = 0; y < s.length; y++) {            //indre - y blir en teller for hvert ord i listen s.
                 if (s[y] != null && s[y].length() != 0 || s[x] != null) {  //sjekker at ikke bokstaven i indeks[x]
                     if (s[y].length() > x) {                                //ikke er null, eller lengde lik 0.
-                        char bokstaven = s[y].charAt(x);                    //sjekker også at ordet s[y] ikke er null
+                        char bokstaven = s[y].charAt(x);                    //sjekker ogsaa at ordet s[y] ikke er null
                         stringBuilder.append(bokstaven);                    //eller lengde lik 0.
 
                     }
@@ -252,22 +232,21 @@ public class Oblig1 {
         return stringBuilder.toString();
     }
 
-
-    // Oppgave 8 - TODO: OK
+    // Oppgave 8
     public static int[] indekssortering(int[] a) {
         int[] indeksTabell = new int[a.length];
         int[] sortedArray = Arrays.copyOf(a, a.length);
-        Arrays.sort(sortedArray);       //hjelpetabell som er sortert i stigende rekkefølge
+        Arrays.sort(sortedArray);       //hjelpetabell som er sortert i stigende rekkefolge
         boolean indeksOpptatt = false;
 
         if (a.length < 1) {
             return null;     // hvis arrayet er tomt returneres null
         } else {
 
-            // løkke der vi tildeler indeksTabell[i] en verdi
+            // lokke der vi tildeler indeksTabell[i] en verdi
             for (int i = 0; i < a.length; i++) {
 
-                // løkke der vi sjekker gjennom arrayet om vi finner riktig verdi (sammenligner sortedArray med a, finner lik verdi)
+                // lokke der vi sjekker gjennom arrayet om vi finner riktig verdi (sammenligner sortedArray med a, finner lik verdi)
                 for (int j = 0; j < a.length; j++) {
 
                     // finner neste tall i sorted array i a, som er neste indeks i indeksTabell
@@ -280,7 +259,7 @@ public class Oblig1 {
 
                         else {
 
-                            // hvis j allerede er i indeksTabell må den lete videre etter en høyere j
+                            // hvis j allerede er i indeksTabell maa den lete videre etter en hoyere j
                             for(int k = 0; k < indeksTabell.length; k++){
                                 if(indeksTabell[k] == j){
                                     indeksOpptatt = true;
@@ -309,7 +288,7 @@ public class Oblig1 {
         if (a.length < 3) {
             throw new NoSuchElementException("Det er mindre enn tre elementer i a, antall: " + a.length);
         } else {
-            int[] sokeTabell = {a[0], a[1], a[2]}; //lager en ny tabell med kun de tre første tallene fra a
+            int[] sokeTabell = {a[0], a[1], a[2]}; //lager en ny tabell med kun de tre forste tallene fra a
 
             /* 0, 1, 2 */
             int m = Objects.requireNonNull(indekssortering(sokeTabell))[0]; // minsteverdi sin index
@@ -354,20 +333,20 @@ public class Oblig1 {
                     if (a[i] < nestminverdi) {
                         if (a[i] < minverdi) {  // hvis neste verdi er mindre enn minste verdi
                             nnm = nm;
-                            nestnestminverdi = nestminverdi; // ny nest nest størst
+                            nestnestminverdi = nestminverdi; // ny nest nest storst
 
                             nm = m;
-                            nestminverdi = minverdi;     // ny nest størst
+                            nestminverdi = minverdi;     // ny nest storst
 
                             m = i;
-                            minverdi = a[m];              // ny størst
+                            minverdi = a[m];              // ny storst
                         }
                         else {  // hvis neste tall er < nestminste men ikke mindre enn minste
                             nnm = nm;
-                            nestnestminverdi = nestminverdi; // ny nest nest størst
+                            nestnestminverdi = nestminverdi; // ny nest nest storst
 
                             nm = i;
-                            nestminverdi = a[nm];         // ny nest størst
+                            nestminverdi = a[nm];         // ny nest storst
 
                         }
                     } else {
@@ -388,106 +367,29 @@ public class Oblig1 {
 
     // Oppgave 10 TODO: ferdig
     public static boolean inneholdt(String a, String b){
-        if(a.length() == 0 || a.isBlank()){             //for å unngå å gå inn i metoden
+        if(a.length() == 0 || a.isBlank()){             //for aa unngaa aa gaa inn i metoden
             return true;
         }
 
-        int[] tallRegisterA = new int[256];             //oppretter to heltallarrays til å legge til antall
+        int[] tallRegisterA = new int[256];             //oppretter to heltallarrays til aa legge til antall
         int[] tallRegisterB = new int[256];             //ASCII-verdier i.
 
-        for(int i = 0; i < a.length(); i++){            //første for-løkke kjører gjennom String a, gjør om
+        for(int i = 0; i < a.length(); i++){            //forste for-lokke kjorer gjennom String a, gjor om
             int asciiVerdi = a.toUpperCase().charAt(i); //alle bokstavene til store bokstaver og finner ASCII-verdien
             tallRegisterA[asciiVerdi]++;                //til bokstaven i [i]. Deretter legges det til
-        }                                               //+1 på indeksen til ASCII-verdien i tallRegisterA.
+        }                                               //+1 paa indeksen til ASCII-verdien i tallRegisterA.
 
-        for(int j = 0; j < b.length(); j++){                //Det samme skjer i for-løkken, lik som for-løkken over.
+        for(int j = 0; j < b.length(); j++){                //Det samme skjer i for-lokken, lik som for-lokken over.
             int asciiVerdi = b.toUpperCase().charAt(j);
             tallRegisterB[asciiVerdi]++;
         }
 
-        for(int i = 0; i < tallRegisterA.length; i++){      //går gjennom tallRegisterA
-            if( (tallRegisterA[i] > tallRegisterB[i]) ){    //dersom antallet er større i tallRegisterA[i], enn
-                return false;                               //i tallRegisterB[i], inngår ikke alle bokstavene fra tallRegisterA
-            }                                               //i tallRegisterB og vi går ut av for-løkken
+        for(int i = 0; i < tallRegisterA.length; i++){      //gaar gjennom tallRegisterA
+            if( (tallRegisterA[i] > tallRegisterB[i]) ){    //dersom antallet er storre i tallRegisterA[i], enn
+                return false;                               //i tallRegisterB[i], inngaar ikke alle bokstavene fra tallRegisterA
+            }                                               //i tallRegisterB og vi gaar ut av for-lokken
         }
         return true;
     }
 
-
-    // main-metode for testing, slettes før innlevering
-    public static void main(String[] args) {
-        int[] tomtArray = {};
-        int[] array1 = randPerm(10);
-        int[] array9 = {-1, 5, 0, 4, 2, 7, -1, -8, -2, 4};
-        int[] array10 = {2,5,7,8,3,6,8,9,6,8};
-        int[] likeTallArray = {5, 5, 5, 5, 5, 5};
-        int[] minusTallArray = {-1,-2,-3,-1,-7,-1000};
-
-        //System.out.println("Opgpave 8: " + Arrays.toString(indekssortering(array1)));
-        System.out.println("Opprinnelig array: " + Arrays.toString(array9));
-        System.out.println("Oppgave 9, output: " + Arrays.toString(tredjeMin(array9)));
-
-
-
-        /*
-        //Oblig1.maks(tomtArray);
-        System.out.println("OPPGAVE 1 MAKS-METODE");
-        int[] listeOppgave1 = randPerm(10);
-        System.out.println("Det største tallet i listen: "+Oblig1.maks(listeOppgave1));
-
-        System.out.println("OPPGAVE 1 OMBYTTINGER-METODE");
-        int[] listeOppgave1_1 = randPerm(10);
-
-
-        int numberOfnumbers = 100;
-        int[] randomNumbers = randPerm(numberOfnumbers);
-        System.out.println(Arrays.toString( randomNumbers));
-        System.out.println("Det tok " + ombyttinger(randomNumbers) + " ombyttinger når antallet var "+numberOfnumbers);
-
-        int numberOfnumbers2 = 10000;
-        int[] randomNumbers2 = randPerm(numberOfnumbers2);
-        System.out.println("Det tok " + ombyttinger(randomNumbers2) + " ombyttinger når antallet var "+numberOfnumbers2);
-
-        int numberOfnumbers3 = 100000;
-        int[] randomNumbers3 = randPerm(numberOfnumbers3);
-        System.out.println("Det tok " + ombyttinger(randomNumbers3) + " ombyttinger når antallet var "+numberOfnumbers3);
-
-        System.out.println(Arrays.toString(listeOppgave1_1));
-        System.out.println("Det tok " + ombyttinger(listeOppgave1_1) + " ombyttinger å flytte det største tallet bakerst.");
-        System.out.println(Arrays.toString(listeOppgave1_1));
-        System.out.println();
-
-        System.out.println("OPPGAVE 4");
-        int[] oppg4List = randPerm(10);
-        System.out.println("Usortert liste: " + Arrays.toString(oppg4List));
-        Oblig1.delsortering(oppg4List);
-        System.out.println("Sortert etter oddetall og partall " + Arrays.toString(oppg4List));
-        */
-
-        /*//Kjører metoden i oppgave 5:
-        System.out.println("OPPGAVE 5");
-        char[] c = {'A','B','C','D','E', 'F','G','H','I','J'};
-        char[] d = {'A'};
-        char[] e = {};
-        System.out.println(Arrays.toString(c));
-        rotasjon(e);
-        rotasjon(c, -4);
-        System.out.println(Arrays.toString(c));*/
-
-        /*
-        System.out.println("OPPGAVE 7 A");
-        System.out.println(flett("HEI", "H"));
-
-        System.out.println("OPPGAVE 7 B");
-        System.out.println(flett("AM ","L","GEDS","ORATKRR","","R TRTE","IO","TGAUU"));
-
-        System.out.println("OPPGAVE 10");
-        System.out.println(inneholdt("", "test"));
-        System.out.println(inneholdt("test", "testeseh"));
-        System.out.println(inneholdt("hallo", "hei"));
-        System.out.println(inneholdt("hei", ""));
-        System.out.println(inneholdt("hei", "hei"));
-        */
-
-    }
 }
