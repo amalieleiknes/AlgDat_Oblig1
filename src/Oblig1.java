@@ -217,6 +217,9 @@ public class Oblig1 {
 
     //Oppgave 7b)
     public static String flett(String... s) {
+        if(s == null || s.length == 0){
+            return "";
+        }
         int lengsteOrd = s[0].length();
         for (int i = 1; i < s.length; i++){
             if(s[i].length() > lengsteOrd){
