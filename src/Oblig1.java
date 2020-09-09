@@ -1,7 +1,7 @@
 /*Oppgaven er levert av folgende studenter:
-* Amalie Christine Leiknes, S340559, s340559@oslomet.no
-* Caroline Sofie Jetteberg, S313564, s313564@oslomet.no
-* Hannah Marie Maurstad Eriksen, S325340, s325340@oslomet.no
+  Amalie Christine Leiknes, S340559, s340559@oslomet.no
+  Caroline Sofie Jetteberg, S313564, s313564@oslomet.no
+  Hannah Marie Maurstad Eriksen, S325340, s325340@oslomet.no
  */
 
 import java.util.*;
@@ -30,15 +30,15 @@ public class Oblig1 {
     /**
     * Naar blir det flest ombyttinger?
      * Det blir flest ombyttinger de gangene tallet til venstre er storre enn tallet til hoyre.
+     * Det blir flest ombyttinger de gangene listen er sortert synkende.
 
     * Naar blir det ferrest?
-     * Det blir ferrest ombyttinger de gangene tallet til venstre er mindre enn tallet til hoyr
+     * Det blir ferrest ombyttinger de gangene tallet til venstre er mindre enn tallet til hoyre.
      * Det blir altsaa ferrest ombyttinger naar listen er sortert i stigende rekkefolge.
 
     * Hvor mange blir det i gjennomsnitt?
-     * 2Hn - 3. For store n er Hn tilnermet lik log(n) + 0.577.
-     * Sammenlikningen a[i] >= a[i + 1] skjer n ganger, da n er antall verdier i listen og siden i begynner paa indeks 0.
-     * I gjennomsnitt ville
+     * 
+     *
     https://www.cs.hioa.no/~ulfu/appolonius/kap1/2/kap12.html#1.2.6 - 1.2.7
      **/
 
