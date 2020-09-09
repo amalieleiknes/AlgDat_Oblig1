@@ -106,16 +106,15 @@ public class Oblig1 {
         return antall;
     }
 
-    // Oppgave 4 TODO: Oppgave 4: Oppgave 4: g) Det blir feil hvis det kun er partall!
-    //Oppgave 4: l) Metoden gjør feil for negative verdier!
+    // Oppgave 4
     //lest fra: https://www.geeksforgeeks.org/sort-even-numbers-ascending-order-sort-odd-numbers-descending-order/
     public static void delsortering(int[] a) {
-        if (a == null || a.length == 0) {
+        int hoyre = a.length - 1;   //grense til hoyre
+        int venstre = 0;            //setter en grense fra venstre
+
+        if (hoyre <= 1) {
             // Ingenting skjer om listen er tom
         } else {
-
-            int venstre = 0;           //setter en grense fra venstre
-            int hoyre = a.length - 1;  //grense til hoyre
 
             while (venstre < hoyre) {
                 while (a[venstre] % 2 != 0 && venstre < hoyre) {  //dersom venstre er mindre enn hoyre og det er et oddetall, flytter vi kun telleren
@@ -124,13 +123,13 @@ public class Oblig1 {
                 while (a[hoyre] % 2 == 0 && venstre < hoyre) {  //dersom venstre er mindre enn hoyre og et partall, flytt telleren
                     hoyre--;
                 }
-                if (venstre < hoyre) {  //gaar inn i if-statement naar while-lokkene har truffet et partall og oddetall
+                //if (venstre < hoyre) {  //gaar inn i if-statement naar while-lokkene har truffet et partall og oddetall
                     int midlertidig = a[venstre];   //gjore plassen til venstre aapen
                     a[venstre] = a[hoyre];          //setter inn verdi fra hoyre til venstre
                     a[hoyre] = midlertidig;         //setter inn verdien som sto til venstre paa hoyre plass
                     venstre++;
                     hoyre--;
-                }
+                //}
             }
 
             //gaar gjennom listen med for-each for aa finne antall oddetall
@@ -141,31 +140,9 @@ public class Oblig1 {
                 }
             }
 
-            //sortere oddetall
-            int temp;
-            for (int i = 0; i < oddetall; i++) {
-                for (int k = 0; k < oddetall - 1; k++) {
-                    if (a[k] > a[k + 1]) {
-                        temp = a[k];
-                        a[k] = a[k + 1];
-                        a[k + 1] = temp;
-                    }
-                }
-            }
-
-            int partall = a.length - oddetall;
-
-            //sortere partall
-            for (int i = partall; i < a.length; i++) {
-
-                for (int j = partall; j < a.length - 1; j++) {
-                    if (a[j] > a[j + 1]) {
-                        int midlertidig = a[j];
-                        a[j] = a[j + 1];
-                        a[j + 1] = midlertidig;
-                    }
-                }
-            }
+            // velger å bruke Arrays.sort da dobbel for-løkke ikke var effektivt nok
+            Arrays.sort(a,0,oddetall);
+            Arrays.sort(a,oddetall,a.length);
         }
     }
 
